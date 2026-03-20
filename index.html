@@ -6,7 +6,6 @@
 <title>Quintette Atout Vent</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
-/* Fallback si Google Fonts bloqué */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --teal:#2a7f7f;--teal2:#1d5f6b;--green:#3a8c6e;
@@ -24,7 +23,7 @@ nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:spa
 .nav-links a:hover{color:var(--accent);}
 
 #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;background:var(--dark);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,46,53,0.4),rgba(26,46,53,0.82));}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(91,184,184,0.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(58,140,110,0.08) 0%,transparent 50%);}
 .hero-content{position:relative;z-index:2;padding:2rem;}
 .hero-orn{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 1.5rem;}
 .hero-tag{font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
@@ -47,6 +46,7 @@ section{padding:6rem 5%;}
 #about{background:var(--light);}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 .about-img-wrap{position:relative;}
+.about-photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px;box-shadow:0 20px 60px rgba(42,127,127,0.2);display:block;}
 .about-badge{position:absolute;bottom:-1rem;right:-1rem;background:var(--dark);color:var(--accent);padding:1rem 1.2rem;text-align:center;font-family:'Cormorant Garamond',serif;}
 .about-badge strong{display:block;font-size:2rem;line-height:1;}
 .about-badge span{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;opacity:.8;}
@@ -61,7 +61,6 @@ section{padding:6rem 5%;}
 .mc-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;margin-bottom:.7rem;color:var(--dark);}
 .mc-bio{color:var(--gray);font-size:.8rem;line-height:1.8;font-weight:300;}
 
-/* AGENDA */
 #agenda{background:var(--mist);}
 .agenda-list{display:flex;flex-direction:column;gap:1px;}
 .concert{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:2rem;background:var(--white);padding:1.5rem 2rem;border-left:3px solid transparent;transition:border-color .3s,box-shadow .3s;}
@@ -75,43 +74,30 @@ section{padding:6rem 5%;}
 .concert-info .lieu{font-size:.72rem;letter-spacing:1px;color:var(--teal);margin-top:.3rem;text-transform:uppercase;}
 .concert-info .prog{font-size:.75rem;color:var(--gray);font-style:italic;margin-top:.3rem;}
 .concert-badge{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:.35rem .9rem;border:1px solid var(--accent);color:var(--teal);}
-
-/* Affiche */
 .affiche-wrap{margin-top:3rem;text-align:center;}
-.affiche-wrap img{max-width:380px;width:100%;border-radius:4px;box-shadow:0 20px 60px rgba(42,127,127,0.2);border:1px solid rgba(42,127,127,0.15);}
-.affiche-label{margin-top:1rem;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);}
+.affiche-wrap img{max-width:340px;width:100%;border-radius:4px;box-shadow:0 20px 60px rgba(42,127,127,0.2);border:1px solid rgba(42,127,127,0.15);}
 
-/* GALERIE */
-#galerie{background:var(--dark);padding:5rem 5%;text-align:center;}
-.gal-wrap{max-width:900px;margin:0 auto;}
-.gal-caption{margin-top:1.2rem;color:rgba(255,255,255,0.45);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;}
-
-/* CONTACT */
-#contact{background:var(--white);}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.contact-text p{color:var(--gray);line-height:1.9;font-weight:300;font-size:.88rem;margin-bottom:.9rem;}
-.c-item{display:flex;align-items:center;gap:.7rem;color:var(--gray);font-size:.83rem;margin-bottom:.7rem;}
-.c-item a{color:var(--teal);text-decoration:none;transition:color .3s;}
-.c-item a:hover{color:var(--green);}
-.social-links{display:flex;gap:1rem;margin-top:1.8rem;flex-wrap:wrap;}
-.soc-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.2rem;border:1px solid var(--teal);color:var(--teal);text-decoration:none;font-size:.72rem;letter-spacing:1px;transition:all .3s;}
-.soc-btn:hover{background:var(--teal);color:var(--white);}
-.form-group{margin-bottom:1rem;}
-.form-group label{display:block;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;}
-.form-group input,.form-group textarea,.form-group select{width:100%;background:var(--light);border:1px solid rgba(42,127,127,0.2);padding:.75rem 1rem;font-family:'Montserrat',sans-serif;font-size:.83rem;color:var(--dark);outline:none;transition:border-color .3s;resize:vertical;appearance:none;}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);}
-.form-group textarea{min-height:110px;}
-.btn-submit{padding:.85rem 2rem;background:var(--teal);border:none;color:var(--white);font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .3s;}
-.btn-submit:hover{background:var(--teal2);}
+/* CONTACT SIMPLIFIÉ */
+#contact{background:var(--dark);text-align:center;padding:5rem 5%;}
+.contact-inner{max-width:600px;margin:0 auto;}
+.contact-inner .s-tag{color:var(--accent);}
+.contact-inner .s-title{color:var(--white);}
+.contact-inner p{color:rgba(255,255,255,0.6);line-height:1.9;font-weight:300;font-size:.88rem;margin-bottom:2rem;}
+.contact-links{display:flex;flex-direction:column;gap:.8rem;align-items:center;}
+.c-link{display:flex;align-items:center;gap:.8rem;color:rgba(255,255,255,0.7);text-decoration:none;font-size:.85rem;transition:color .3s;}
+.c-link:hover{color:var(--accent);}
+.social-links{display:flex;gap:1rem;margin-top:2rem;justify-content:center;flex-wrap:wrap;}
+.soc-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.2rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.72rem;letter-spacing:1px;transition:all .3s;}
+.soc-btn:hover{background:var(--accent);color:var(--dark);}
 
 footer{background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;padding:2rem;font-size:.7rem;letter-spacing:1px;border-top:1px solid rgba(91,184,184,0.1);}
 footer span{color:var(--accent);}
-.footer-social{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;}
+.footer-social{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
 .footer-social a{color:rgba(255,255,255,0.4);text-decoration:none;font-size:.7rem;letter-spacing:1px;transition:color .3s;}
 .footer-social a:hover{color:var(--accent);}
 
 @media(max-width:768px){
-  .about-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem;}
   .concert{grid-template-columns:80px 1fr;gap:1rem;}
   .concert-badge{display:none;}
   .about-badge{display:none;}
@@ -128,7 +114,6 @@ footer span{color:var(--accent);}
     <li><a href="#about">L'ensemble</a></li>
     <li><a href="#membres">Musiciens</a></li>
     <li><a href="#agenda">Agenda</a></li>
-    <li><a href="#galerie">Galerie</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -154,10 +139,7 @@ footer span{color:var(--accent);}
   <div class="si">
     <div class="about-grid">
       <div class="about-img-wrap">
-        <div style="width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,#1d5f6b,#2a7f7f,#3a8c6e);border-radius:2px;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(42,127,127,0.2);">
-          <span style="font-size:5rem;"></span>
-        <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Gemini_Generated_Image_1puu361puu361puu%20(2).png" alt="Quintette Atout Vent en concert" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.35;">
-        </div>
+        <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Gemini_Generated_Image_1puu361puu361puu%20(2).png" alt="Quintette Atout Vent en concert" class="about-photo">
         <div class="about-badge"><strong>2024</strong><span>Fondation</span></div>
       </div>
       <div class="about-text">
@@ -204,7 +186,7 @@ footer span{color:var(--accent);}
         <p class="mc-bio">Pianiste professionnelle (soliste, concertiste, professeure), tournée vers le hautbois en 2012. Fondatrice du trio d'anches Divertimento. 1er hautbois solo à l'Orchestre Symphonique de la Pointe de Caux.</p>
       </div>
       <div class="mc">
-        <div class="mc-ico">🎶</div>
+        <div class="mc-ico">🎷</div>
         <p class="mc-inst">Clarinette & Arrangements</p>
         <h3 class="mc-name">Emmanuel Battaglia</h3>
         <p class="mc-bio">Formé à Notre-Dame-de-Gravenchon et à la musique militaire d'Angers. Arrangeur pour l'ensemble. 1ère clarinette à l'Orchestre du Havre et à l'Orchestre Symphonique de la Pointe de Caux.</p>
@@ -212,8 +194,6 @@ footer span{color:var(--accent);}
     </div>
   </div>
 </section>
-
-
 
 <!-- AGENDA -->
 <section id="agenda">
@@ -237,51 +217,31 @@ footer span{color:var(--accent);}
         <span class="concert-badge">À venir</span>
       </div>
     </div>
-
-    <!-- AFFICHE -->
     <div class="affiche-wrap">
-      <p style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:1.2rem;">Affiche du concert</p>
-      <!-- L'affiche uploadée par l'utilisateur -->
-      <img src="https://i.ibb.co/k28Zqf93/Copie-de-DIMANCHE-29-MARS-2026-16-HOO-EGLISE-DE-SANDOUVILLE-7.png" alt="Affiche concert Quintette Atout Vent – 29 mars 2026 Église de Sandouville" style="max-width:380px;width:100%;border-radius:4px;box-shadow:0 20px 60px rgba(42,127,127,0.2);border:1px solid rgba(42,127,127,0.15);display:block;margin:0 auto;">
-      <p class="affiche-label">Télécharger l'affiche</p>
+      <p style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:1.2rem;">Affiche & programme</p>
+      <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:flex-start;">
+        <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/final%20(4).png" alt="Affiche concert">
+        <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/final%20(5).png" alt="Programme du concert">
+      </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="si">
-    <div class="contact-grid">
-      <div>
-        <p class="s-tag">Contact</p>
-        <h2 class="s-title">Nous contacter</h2>
-        <div class="s-line"></div>
-        <p>Le Quintette Atout Vent est disponible pour des concerts, festivals et événements culturels. N'hésitez pas à nous écrire pour toute demande de programmation.</p>
-        <p>Basés au <strong>Havre, Normandie</strong> — disponibles partout en France.</p>
-        <div style="margin-top:1.5rem;">
-          <div class="c-item">📍 Le Havre, Seine-Maritime (76)</div>
-          <div class="c-item">📧 <a href="mailto:atoutvent76@gmail.com">atoutvent76@gmail.com</a></div>
-        </div>
-        <div class="social-links">
-          <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" class="soc-btn">📷 @atout_vent_quintette</a>
-          <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" class="soc-btn">👤 Quintette Atout Vent</a>
-        </div>
-      </div>
-      <div>
-        <div class="form-group"><label>Nom & Prénom</label><input type="text" placeholder="Votre nom"></div>
-        <div class="form-group"><label>Email</label><input type="email" placeholder="votre@email.fr"></div>
-        <div class="form-group">
-          <label>Type de demande</label>
-          <select>
-            <option>Demande de concert</option>
-            <option>Information</option>
-            <option>Partenariat</option>
-            <option>Autre</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Décrivez votre projet ou votre demande..."></textarea></div>
-        <button class="btn-submit">Envoyer le message</button>
-      </div>
+  <div class="contact-inner">
+    <p class="s-tag">Contact</p>
+    <h2 class="s-title">Nous contacter</h2>
+    <div class="s-line" style="margin:0 auto 1.5rem;"></div>
+    <p>Le Quintette Atout Vent est disponible pour des concerts, festivals et événements culturels. N'hésitez pas à nous écrire pour toute demande.</p>
+    <div class="contact-links">
+      <a href="mailto:atoutvent76@gmail.com" class="c-link">✉️ atoutvent76@gmail.com</a>
+      <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" class="c-link">📷 @atout_vent_quintette</a>
+      <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" class="c-link">👤 Quintette Atout Vent</a>
+    </div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" class="soc-btn">📷 Instagram</a>
+      <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" class="soc-btn">👤 Facebook</a>
     </div>
   </div>
 </section>
