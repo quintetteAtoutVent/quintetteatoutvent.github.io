@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+```
   <link rel="canonical" href="https://quintetteatoutvent.github.io/">
   <meta name="theme-color" content="#2a7f7f">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -22,7 +26,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --teal:#2a7f7f;--teal2:#1d5f6b;--green:#3a8c6e;
@@ -268,7 +271,7 @@ footer span{color:var(--accent);}
       <div class="concert">
         <div class="concert-date"><div class="day">29</div><div class="month">Mars</div><div class="year">2026</div></div>
         <div class="concert-info">
-          <h4>Concert — Le Quintette Atout Vent</h4>
+          <h3>Concert — Le Quintette Atout Vent</h3>
           <p class="lieu">📍 Église de Sandouville</p>
           <p style="font-size:.8rem;color:var(--gray);margin-top:.3rem;">Dimanche 29 mars 2026 · 16h00 · Participation libre</p>
           <p class="prog">Mozart · Fauré · Tchaïkovsky · Debussy · Grieg</p>
@@ -330,8 +333,8 @@ footer span{color:var(--accent);}
           <div class="form-group"><label>Nom & Prénom</label><input type="text" name="nom" placeholder="Votre nom" required></div>
           <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="votre@email.fr" required></div>
           <div class="form-group">
-            <label>Type de demande</label>
-            <select name="type">
+  <label for="type">Type de demande</label>
+  <select name="type" id="type">
               <option>Demande de concert</option>
               <option>Information</option>
               <option>Partenariat</option>
