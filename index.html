@@ -36,10 +36,36 @@
 :root{
 --teal:#2a7f7f;--teal2:#1d5f6b;--green:#3a8c6e;
 --gray:#4a5568;--light:#f0f5f5;--white:#fff;
---dark:#1a2e35;--mist:#e8f0ef;--accent:#5bb8b8;
+--dark:#1a2e35;--mist:#e8f0ef;--accent:#5bb8b8;--gold:#c5a47e;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;}
+
+/* --- CURSEUR PERSONNALISÉ --- */
+@media (min-width: 901px) {
+    html, body { cursor: none !important; }
+    a, button, .btn, .concert, .dot, input, textarea, select { cursor: none !important; }
+
+    .cursor-dot {
+        width: 12px; height: 12px; background-color: var(--accent);
+        position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+        border-radius: 50%; z-index: 10000; pointer-events: none;
+        transition: transform 0.2s ease-out, opacity 0.3s ease;
+    }
+    .cursor-outline {
+        width: 50px; height: 50px; border: 2px solid var(--accent);
+        background-color: rgba(91, 184, 184, 0.05);
+        position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
+        border-radius: 50%; z-index: 9999; pointer-events: none;
+        transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
+    }
+    .cursor-outline.hover {
+        width: 85px; height: 85px;
+        background-color: rgba(197, 164, 126, 0.1);
+        border-color: var(--gold);
+    }
+    .cursor-dot.hover { transform: translate(-50%, -50%) scale(0.6); opacity: 0.8; }
+}
 
 /* --- STYLE TRANSITION BARBA --- */
 .transition-overlay {
@@ -147,6 +173,10 @@ h1{font-size:2.5rem;}
 </style>
 </head>
 <body data-barba="wrapper">
+
+<!-- ÉLÉMENTS DU CURSEUR -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
 <!-- RIDEAU ÉMERAUDE -->
 <div class="transition-overlay"></div>
@@ -386,7 +416,7 @@ h1{font-size:2.5rem;}
 
 </main>
 
-<!-- SCRIPTS BARBA + TA LOGIQUE -->
+<!-- SCRIPTS BARBA + LOGIQUE -->
 <script src="https://unpkg.com/@barba/core"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
@@ -398,15 +428,53 @@ h1{font-size:2.5rem;}
     const total = 5;
     const nums = ['01', '02', '03', '04', '05'];
 
-    // --- TA LOGIQUE DE CARROUSEL ---
+    // --- LOGIQUE DU CURSEUR PERSONNALISÉ ---
+    const dot = document.querySelector('.cursor-dot');
+    const outline = document.querySelector('.cursor-outline');
+    let mouseX = 0, mouseY = 0, outX = 0, outY = 0;
+    const speed = 0.15;
+
+    function initCursor() {
+        if (window.innerWidth <= 900) return;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        });
+
+        const animateCursor = () => {
+            outX += (mouseX - outX) * speed;
+            outY += (mouseY - outY) * speed;
+            outline.style.transform = `translate(${outX}px, ${outY}px)`;
+            requestAnimationFrame(animateCursor);
+        };
+        animateCursor();
+
+        updateCursorHovers();
+    }
+
+    function updateCursorHovers() {
+        const targets = document.querySelectorAll('a, button, .btn, .concert, .dot, input, textarea, select, .concert-card');
+        targets.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                outline.classList.add('hover');
+                dot.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                outline.classList.remove('hover');
+                dot.classList.remove('hover');
+            });
+        });
+    }
+
+    // --- LOGIQUE DE CARROUSEL ---
     function initPageScripts() {
         const track = document.getElementById('track');
         if (!track) return;
 
-        // Reset carrousel position
         track.style.transform = 'translateX(-' + cur * 100 + '%)';
         
-        // Touch events
         let startX = 0;
         track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive: true});
         track.addEventListener('touchend', e => {
@@ -415,6 +483,7 @@ h1{font-size:2.5rem;}
         }, {passive: true});
         
         updateUI();
+        updateCursorHovers(); // Ré-appliquer les hovers du curseur sur le nouveau contenu
     }
 
     function updateUI() {
@@ -425,7 +494,6 @@ h1{font-size:2.5rem;}
         document.getElementById('cur-num').textContent = nums[cur];
     }
 
-    // Fonctions globales pour les boutons onclick
     window.move = function(dir) {
         cur = (cur + dir + total) % total;
         updateUI();
@@ -460,13 +528,13 @@ h1{font-size:2.5rem;}
                         gsap.set('.transition-overlay', { translateY: '100%' });
                     }
                 });
-                // Relancer le carrousel sur la nouvelle page chargée
                 initPageScripts();
             }
         }]
     });
 
     // Lancement initial
+    initCursor();
     initPageScripts();
 })();
 </script>
