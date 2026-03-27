@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Fausse Note | Quintette Atout Vent</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal: #2a7f7f;
+      --accent: #5bb8b8;
+      --dark: #0f1c20;
+      --white: #ffffff;
+      --gold: #c5a47e;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif; 
+      background: var(--dark); 
+      color: var(--white); 
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Fond avec particules discrètes */
+    #particles-js {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .error-container {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      max-width: 600px;
+    }
+
+    .error-code {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(6rem, 15vw, 10rem);
+      font-weight: 600;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .error-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .error-text {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      letter-spacing: 1px;
+    }
+
+    .btn-back {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+    }
+
+    .btn-back:hover {
+      background: var(--accent);
+      color: var(--dark);
+    }
+
+    /* Animation de flottement */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    .error-code { animation: float 6s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+  <canvas id="particles-js"></canvas>
+
+  <div class="error-container">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Une Fausse Note</h1>
+    <p class="error-text">
+      Il semble que la partition se soit égarée. La page que vous cherchez n'existe plus ou a été déplacée dans nos archives.
+    </p>
+    <a href="index.html" class="btn-back">Retour au pupitre</a>
+  </div>
+
+  <script>
+    /* Système de particules simplifié pour correspondre à votre header */
+    (function() {
+      const canvas = document.getElementById('particles-js');
+      const ctx = canvas.getContext('2d');
+      let w, h, particles = [];
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.vx = (Math.random() - 0.5) * 0.4;
+          this.vy = (Math.random() - 0.5) * 0.4;
+          this.size = Math.random() * 1.5;
+        }
+        update() {
+          this.x += this.vx; this.y += this.vy;
+          if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(91, 184, 184, 0.3)';
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+        particles = Array.from({ length: 80 }, () => new Particle());
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', init);
+      init();
+      render();
+    })();
+  </script>
+</body>
+</html>
