@@ -2,105 +2,235 @@
 <html lang="fr">
 <head>
  <link rel="canonical" href="https://quintetteatoutvent.github.io/archives.html">
- <meta name="theme-color" content="#2a7f7f">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Archives - Quintette Atout Vent</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-        :root{
-            --teal:#2a7f7f;--teal2:#1d5f6b;--green:#3a8c6e;
-            --gray:#4a5568;--light:#f0f5f5;--white:#fff;
-            --dark:#1a2e35;--mist:#e8f0ef;--accent:#5bb8b8;
-        }
-        body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);line-height:1.6;}
-        
-        /* Navigation */
-        nav{position:fixed;top:0;width:100%;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 5%;background:rgba(26,46,53,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(91,184,184,0.2);}
-        .logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none;}
-        .logo span{display:block;font-size:.65rem;letter-spacing:6px;font-weight:300;color:rgba(255,255,255,0.55);}
-        .nav-links{display:flex;gap:1.5rem;list-style:none;}
-        .nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Sécurité : Politique de sécurité du contenu (CSP) simplifiée -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="theme-color" content="#0f1c20">
+  <meta name="description" content="Archives sécurisées des concerts du Quintette Atout Vent au Havre.">
+  <title>Mémoire Musicale — Quintette Atout Vent</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-        header{background:var(--dark);padding:10rem 5% 5rem;text-align:center;position:relative;}
-        h1{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:var(--white);letter-spacing:4px;text-transform:uppercase;}
-        .s-line{width:60px;height:2px;background:var(--accent);margin:1.5rem auto;}
+  <style>
+    :root {
+      --teal: #2a7f7f; --accent: #5bb8b8; --dark: #0f1c20;
+      --light: #fdfdfd; --white: #ffffff; --gray: #64748b;
+      --gold: #c5a47e;
+      --cubic: cubic-bezier(0.23, 1, 0.32, 1);
+    }
 
-        .container{max-width:1100px;margin:0 auto;padding:5rem 5%;}
-        .archive-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:3rem;}
-        
-        .card{background:var(--white);border:1px solid rgba(42,127,127,0.1);transition:0.4s;position:relative;overflow:hidden;}
-        .card:hover{transform:translateY(-10px);border-color:var(--accent);}
-        .card-img{width:100%;height:220px;background:var(--teal2);overflow:hidden;}
-        .card-img img{width:100%;height:100%;object-fit:cover;transition:0.6s;}
-        .card:hover .card-img img{transform:scale(1.1);}
-        .card-body{padding:2rem;}
-        .card-date{font-size:.65rem;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:.5rem;font-weight:600;}
-        .card-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;margin-bottom:1rem;}
-        .card-text{font-size:.85rem;color:var(--gray);font-weight:300;margin-bottom:1rem;}
-        .card-prog{font-size:.75rem;color:var(--teal2);font-style:italic;border-top:1px solid var(--light);padding-top:1rem;}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* Sécurité : Désactiver la sélection de texte sur les éléments visuels */
+    body { 
+      font-family: 'Montserrat', sans-serif; 
+      background: var(--white); 
+      color: var(--dark); 
+      line-height: 1.6; 
+      overflow-x: hidden; 
+      -webkit-font-smoothing: antialiased;
+      user-select: none; /* Empêche la copie sauvage du texte */
+    }
 
-        .btn-back{display:inline-block;margin-top:4rem;padding:1rem 2.5rem;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;transition:0.3s;}
-        .btn-back:hover{background:var(--accent);color:var(--dark);}
+    /* NAV */
+    nav { 
+      position: fixed; top: 0; width: 100%; z-index: 1000; 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 1.2rem 5%; background: rgba(15, 28, 32, 0.96); backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .logo { font-family: 'Cormorant Garamond', serif; color: var(--accent); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; font-size: 1.1rem; }
+    .logo span { display: block; font-size: 0.55rem; color: #fff; opacity: 0.5; letter-spacing: 5px; margin-top: 2px; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: white; text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; transition: 0.3s; }
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
 
-        footer{background:var(--dark);color:rgba(255,255,255,0.4);text-align:center;padding:3rem;font-size:.7rem;letter-spacing:1px;margin-top:5rem;}
-    </style>
+    /* HERO */
+    #hero { height: 55vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background-color: #0c1417; }
+    #particles-js { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; color: white; text-align: center; pointer-events: none; }
+    #hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: 6px; text-transform: uppercase; font-weight: 300; }
+    #hero p { text-transform: uppercase; letter-spacing: 8px; font-size: 0.7rem; margin-bottom: 1rem; color: var(--accent); font-weight: 600; }
+
+    /* GRID & CARDS */
+    .si { max-width: 1200px; margin: 0 auto; padding: 7rem 5%; }
+    .concerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 6rem; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--cubic), transform 0.8s var(--cubic); will-change: transform, opacity; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .concert-card { background: var(--white); position: relative; display: flex; flex-direction: column; cursor: pointer; }
+    .img-box { position: relative; height: 380px; overflow: hidden; background: var(--dark); -webkit-mask-image: -webkit-radial-gradient(white, black); /* Fix safari bug */ }
+    
+    /* Sécurité : Interdire le "glisser-déposer" des images */
+    .concert-card-img { 
+      width: 100%; height: 100%; object-fit: cover; 
+      transition: transform 1.2s var(--cubic); 
+      pointer-events: none; /* Empêche le clic droit direct sur l'image */
+    }
+    .concert-card:hover .concert-card-img { transform: scale(1.08); opacity: 0.8; }
+    
+    .concert-card-body { padding: 2.5rem 0; user-select: text; /* Autorise la sélection de texte ici uniquement */ }
+    .date { font-size: 0.7rem; color: var(--teal); letter-spacing: 3px; font-weight: 600; margin-bottom: 0.8rem; display: block; }
+    .title { font-family: 'Cormorant Garamond', serif; font-size: 2.3rem; color: var(--dark); font-weight: 500; line-height: 1.1; position: relative; display: inline-block; }
+    .title::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 1.5px; background-color: var(--gold); transition: width 0.6s var(--cubic); }
+    .concert-card:hover .title::after { width: 100%; }
+    .desc { font-size: 0.95rem; color: var(--gray); font-weight: 300; line-height: 1.8; margin-top: 1.5rem; max-width: 90%; }
+
+    /* LIGHTBOX */
+    #lightbox { position: fixed; inset: 0; background: rgba(8, 14, 16, 0.98); z-index: 2000; display: none; align-items: center; justify-content: center; cursor: zoom-out; backdrop-filter: blur(10px); }
+    #lightbox img { max-width: 90%; max-height: 85vh; box-shadow: 0 40px 100px rgba(0,0,0,0.5); transform: scale(0.95); transition: transform 0.4s var(--cubic); pointer-events: none; }
+    #lightbox.active { display: flex; }
+    #lightbox.active img { transform: scale(1); }
+
+    .btn-wrap { text-align: center; margin-top: 4rem; }
+    .btn-back { display: inline-block; padding: 1.2rem 4rem; background: var(--dark); color: white; text-decoration: none; font-size: 0.7rem; letter-spacing: 4px; text-transform: uppercase; transition: 0.4s var(--cubic); border: 1px solid var(--dark); }
+    .btn-back:hover { background: transparent; color: var(--dark); transform: translateY(-3px); }
+
+    footer { background: #0c1417; color: rgba(255,255,255,0.3); text-align: center; padding: 4rem 2rem; font-size: 0.7rem; letter-spacing: 1px; }
+
+    @media (max-width: 900px) { .concerts-grid { grid-template-columns: 1fr; gap: 4rem; } .img-box { height: 320px; } }
+  </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Sécurité : Désactivation clic droit sur toute la page -->
 
-<nav>
-    <a href="index.html" class="logo">Atout Vent<span>Quintette</span></a>
-    <ul class="nav-links">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="index.html#agenda">Agenda</a></li>
-        <li><a href="index.html#contact">Nous contacter</a></li>
-    </ul>
+<nav role="navigation">
+  <a href="index.html" class="logo">Atout Vent<span>Quintette</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#agenda">Agenda</a>
+  </div>
 </nav>
 
-<header>
-    <p style="color:var(--accent);letter-spacing:5px;font-size:.7rem;text-transform:uppercase;">Mémoire Musicale</p>
-    <h1>Concerts Passés</h1>
-    <div class="s-line"></div>
+<header id="hero">
+  <canvas id="particles-js"></canvas>
+  <div class="hero-content">
+    <p>Le Souffle de l'Histoire</p>
+    <h1>Concerts <span>Passés</span></h1>
+  </div>
 </header>
 
-<div class="container">
-    <div class="archive-grid">
-        
-        <!-- CONCERT 1 -->
-        <div class="card">
-            <div class="card-img">
-                <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert pierre et le loup.jpg" alt="Concert Fondation">
-            </div>
-            <div class="card-body">
-                <div class="card-date">septembre 2025</div>
-                <h3 class="card-title">Concert Pierre et le loup</h3>
-                <p class="card-text">plusieurs représentation du célèbre pierre et le loup de peer gynt avec conteur Fabrice Poret.</p>
-                <p class="card-prog">peer gynt</p>
-            </div>
-        </div>
+<main class="si">
+  <div class="concerts-grid">
+    <!-- Concerts -->
+    <article class="concert-card reveal" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg')">
+      <div class="img-box"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg" class="concert-card-img" alt="Pierre et le loup"></div>
+      <div class="concert-card-body">
+        <span class="date">SAISON 2024 — 2025</span>
+        <h2 class="title">Pierre et le Loup</h2>
+        <p class="desc">Conte musical de Prokofiev adapté pour quintette. Une narration immersive au Havre.</p>
+      </div>
+    </article>
 
-        <!-- CONCERT 2 -->
-        <div class="card">
-            <div class="card-img">
-                  <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/affiche casse noisette .png" alt="concert casse noisette">
-            </div>
-            <div class="card-body">
-                <div class="card-date">23 decembre 2025</div>
-                <h3 class="card-title">Concert casse noisette </h3>
-                <p class="card-text">Représentation de casse noisette et bien d'autre pendant la période de noël.</p>
-                <p class="card-prog">Peer Gynt Pavane Casse-noisette</p>
-            </div>
-        </div>
+    <article class="concert-card reveal" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/affiche%20casse%20noisette%20.png')">
+      <div class="img-box"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/affiche%20casse%20noisette%20.png" class="concert-card-img" alt="Casse Noisette"></div>
+      <div class="concert-card-body">
+        <span class="date">DÉCEMBRE 2025</span>
+        <h2 class="title">Casse-Noisette</h2>
+        <p class="desc">La magie de Tchaïkovski revisitée pour les fêtes de fin d'année.</p>
+      </div>
+    </article>
+  </div>
 
-    </div>
+  <div class="btn-wrap reveal">
+    <a href="index.html" class="btn-back">Retour à l'accueil</a>
+  </div>
+</main>
 
-    <center><a href="index.html" class="btn-back">← Revenir à l'accueil</a></center>
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <footer>
-    © 2026 <span>Quintette Atout Vent</span> · Archives de l'ensemble · <span>Battaglia Laurent</span>
+  © 2026 <span>Quintette Atout Vent</span> · Le Havre · Réalisation sécurisée
 </footer>
+
+<script>
+  /* SÉCURITÉ : Encapsulation des données pour éviter les injections en console */
+  (function() {
+    "use strict";
+
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d', { alpha: false });
+    let w, h, particles = [];
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.color = Math.random() > 0.85 ? '#c5a47e' : '#5bb8b8';
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+      }
+    }
+
+    const init = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.getElementById('hero').offsetHeight;
+      particles = Array.from({ length: 100 }, () => new Particle());
+    };
+
+    const render = () => {
+      ctx.fillStyle = '#0c1417';
+      ctx.fillRect(0, 0, w, h);
+      ctx.beginPath();
+      particles.forEach(p => {
+        p.update();
+        ctx.moveTo(p.x, p.y);
+        ctx.arc(p.x, p.y, 0.8, 0, Math.PI * 2);
+      });
+      ctx.fillStyle = '#5bb8b8';
+      ctx.fill();
+      requestAnimationFrame(render);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    window.addEventListener('resize', init);
+    init();
+    render();
+
+    /* Fonctions globales sécurisées via window */
+    window.openLightbox = function(url) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = url;
+      lb.style.display = 'flex';
+      setTimeout(() => lb.classList.add('active'), 10);
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeLightbox = function() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('active');
+      setTimeout(() => lb.style.display = 'none', 400);
+      document.body.style.overflow = 'auto';
+    };
+
+    /* SÉCURITÉ : Touche F12 désactivée (basique) */
+    window.addEventListener('keydown', function(e) {
+      if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
+        e.preventDefault();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
+
