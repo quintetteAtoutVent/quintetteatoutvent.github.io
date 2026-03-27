@@ -3,100 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta name="theme-color" content="#0f1c20">
+  <meta name="description" content="Archives sécurisées des concerts du Quintette Atout Vent au Havre.">
   <title>Mémoire Musicale — Quintette Atout Vent</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --teal: #2a7f7f; --accent: #5bb8b8; --dark: #0f1c20;
       --light: #fdfdfd; --white: #ffffff; --gray: #64748b;
-      --gold: #c5a47e; --cubic: cubic-bezier(0.23, 1, 0.32, 1);
+      --gold: #c5a47e;
+      --cubic: cubic-bezier(0.23, 1, 0.32, 1);
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
-    nav { position: fixed; top: 0; width: 100%; z-index: 1000; display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: rgba(15, 28, 32, 0.96); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+    
+    body { 
+      font-family: 'Montserrat', sans-serif; 
+      background: var(--white); 
+      color: var(--dark); 
+      line-height: 1.6; 
+      overflow-x: hidden; 
+      -webkit-font-smoothing: antialiased;
+      user-select: none; 
+    }
+
+    /* NAV */
+    nav { 
+      position: fixed; top: 0; width: 100%; z-index: 1000; 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 1rem 5%; background: rgba(15, 28, 32, 0.96); backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
     .logo { font-family: 'Cormorant Garamond', serif; color: var(--accent); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; font-size: 1rem; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .logo span { display: block; font-size: 0.5rem; color: #fff; opacity: 0.5; letter-spacing: 5px; margin-top: 2px; }
+    .nav-links { display: flex; gap: 2rem; }
     .nav-links a { color: white; text-decoration: none; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; transition: 0.3s; }
-    .transition-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: var(--teal); z-index: 10000; transform: translateY(100%); pointer-events: none; }
-    #hero { height: 35vh; min-height: 250px; margin-top: 60px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background-color: #0c1417; }
+    .nav-links a:hover { opacity: 1; color: var(--accent); }
+
+    /* HERO REDUIT */
+    #hero { 
+      height: 30vh; /* Taille réduite */
+      min-height: 220px; 
+      margin-top: 60px; /* Compensation nav */
+      display: flex; align-items: center; justify-content: center; 
+      position: relative; overflow: hidden; background-color: #0c1417; 
+    }
     #particles-js { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
     .hero-content { position: relative; z-index: 2; color: white; text-align: center; pointer-events: none; }
+    #hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 5vw, 3rem); letter-spacing: 5px; text-transform: uppercase; font-weight: 300; }
+    #hero p { text-transform: uppercase; letter-spacing: 6px; font-size: 0.6rem; margin-bottom: 0.5rem; color: var(--accent); font-weight: 600; }
+
+    /* GRID & CARDS */
     .si { max-width: 1200px; margin: 0 auto; padding: 4rem 5%; }
     .concerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 4rem; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s var(--cubic), transform 0.8s var(--cubic); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
     .concert-card { background: var(--white); position: relative; display: flex; flex-direction: column; cursor: pointer; }
-    .img-box { position: relative; height: 380px; overflow: hidden; background: var(--dark); }
-    .concert-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--cubic); }
+    .img-box { position: relative; height: 350px; overflow: hidden; background: var(--dark); }
+    .concert-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--cubic); pointer-events: none; }
     .concert-card:hover .concert-card-img { transform: scale(1.05); opacity: 0.8; }
-    .concert-card-body { padding: 2rem 0; }
-    .title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--dark); font-weight: 500; }
-    #lightbox { position: fixed; inset: 0; background: rgba(8, 14, 16, 0.98); z-index: 11000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
-    #lightbox img { max-width: 90%; max-height: 85vh; transform: scale(0.95); transition: transform 0.4s var(--cubic); }
+    
+    .concert-card-body { padding: 2rem 0; user-select: text; }
+    .date { font-size: 0.7rem; color: var(--teal); letter-spacing: 3px; font-weight: 600; margin-bottom: 0.5rem; display: block; }
+    .title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--dark); font-weight: 500; line-height: 1.1; position: relative; }
+    .title::after { content: ""; position: absolute; left: 0; bottom: -4px; width: 0; height: 1.5px; background-color: var(--gold); transition: width 0.6s var(--cubic); }
+    .concert-card:hover .title::after { width: 100%; }
+    .desc { font-size: 0.9rem; color: var(--gray); font-weight: 300; line-height: 1.7; margin-top: 1rem; }
+
+    /* LIGHTBOX */
+    #lightbox { position: fixed; inset: 0; background: rgba(8, 14, 16, 0.98); z-index: 2000; display: none; align-items: center; justify-content: center; cursor: zoom-out; backdrop-filter: blur(10px); }
+    #lightbox img { max-width: 90%; max-height: 85vh; transform: scale(0.95); transition: transform 0.4s var(--cubic); pointer-events: none; }
     #lightbox.active { display: flex; }
     #lightbox.active img { transform: scale(1); }
-    footer { background: #0c1417; color: rgba(255,255,255,0.3); text-align: center; padding: 4rem 2rem; font-size: 0.7rem; }
+
+    .btn-wrap { text-align: center; margin-top: 3rem; }
+    .btn-back { display: inline-block; padding: 1rem 3rem; background: var(--dark); color: white; text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; transition: 0.4s; border: 1px solid var(--dark); }
+    .btn-back:hover { background: transparent; color: var(--dark); }
+
+    footer { background: #0c1417; color: rgba(255,255,255,0.3); text-align: center; padding: 3rem 2rem; font-size: 0.65rem; letter-spacing: 1px; }
+
+    @media (max-width: 900px) { .concerts-grid { grid-template-columns: 1fr; } .img-box { height: 280px; } }
   </style>
 </head>
-<body data-barba="wrapper">
-  <div class="transition-overlay"></div>
-  <nav>
-    <a href="index.html" class="logo">Atout Vent</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="index.html#agenda">Agenda</a></li>
-    </ul>
-  </nav>
+<body oncontextmenu="return false;">
 
-  <main data-barba="container" data-barba-namespace="archives">
-    <header id="hero">
-      <canvas id="particles-js"></canvas>
-      <div class="hero-content"><h1>Concerts Passés</h1></div>
-    </header>
+<nav role="navigation">
+  <a href="index.html" class="logo">Atout Vent<span>Quintette</span></a>
+  <div class="nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="index.html#agenda">Agenda</a>
+    <a href="index.html#contact">Nous Contacter</a>
+  </div>
+</nav>
 
-    <div class="si">
-      <div class="concerts-grid">
-        <article class="concert-card" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg')">
-          <div class="img-box"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg" class="concert-card-img" alt="Pierre et le loup"></div>
-          <div class="concert-card-body"><h2 class="title">Pierre et le Loup</h2></div>
-        </article>
+<header id="hero">
+  <canvas id="particles-js"></canvas>
+  <div class="hero-content">
+    <p>Le Souffle de l'Histoire</p>
+    <h1>Concerts <span>Passés</span></h1>
+  </div>
+</header>
+
+<main class="si">
+  <div class="concerts-grid">
+    <article class="concert-card reveal" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg')">
+      <div class="img-box"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg" class="concert-card-img" alt="Pierre et le loup"></div>
+      <div class="concert-card-body">
+        <span class="date">SAISON 2024 — 2025</span>
+        <h2 class="title">Pierre et le Loup</h2>
+        <p class="desc">Conte musical de Prokofiev adapté pour quintette. Une narration immersive au Havre.</p>
       </div>
-    </div>
-    <footer>© 2026 Quintette Atout Vent</footer>
-  </main>
+    </article>
 
-  <div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src=""></div>
+    <article class="concert-card reveal" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/affiche%20casse%20noisette%20.png')">
+      <div class="img-box"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/affiche%20casse%20noisette%20.png" class="concert-card-img" alt="Casse Noisette"></div>
+      <div class="concert-card-body">
+        <span class="date">DÉCEMBRE 2025</span>
+        <h2 class="title">Casse-Noisette</h2>
+        <p class="desc">La magie de Tchaïkovski revisitée pour les fêtes de fin d'année.</p>
+      </div>
+    </article>
+  </div>
 
-  <script src="https://unpkg.com/@barba/core"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script>
-    (function() {
-      "use strict";
-      const initParticles = () => {
-        const canvas = document.getElementById('particles-js');
-        if(!canvas) return;
-        const ctx = canvas.getContext('2d');
-        let w = canvas.width = window.innerWidth, h = canvas.height = canvas.parentNode.offsetHeight;
-        let pArr = Array.from({length: 60}, () => ({x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3, s: Math.random()*1.2}));
-        const render = () => {
-          ctx.clearRect(0,0,w,h);
-          pArr.forEach(p => { p.x += p.vx; p.y += p.vy; if(p.x<0||p.x>w||p.y<0||p.y>h) { p.x=Math.random()*w; p.y=Math.random()*h; } ctx.beginPath(); ctx.arc(p.x, p.y, p.s, 0, Math.PI*2); ctx.fillStyle = 'rgba(91, 184, 184, 0.4)'; ctx.fill(); });
-          requestAnimationFrame(render);
-        };
-        render();
-      };
-      window.openLightbox = (u) => { document.getElementById('lightbox-img').src = u; const lb = document.getElementById('lightbox'); lb.style.display = 'flex'; setTimeout(() => lb.classList.add('active'), 10); };
-      window.closeLightbox = () => { const lb = document.getElementById('lightbox'); lb.classList.remove('active'); setTimeout(() => lb.style.display = 'none', 400); };
+  <div class="btn-wrap reveal">
+    <a href="index.html" class="btn-back">Retour à l'accueil</a>
+  </div>
+</main>
 
-      barba.init({
-        transitions: [{
-          name: 'emeraude',
-          async leave() { await gsap.to('.transition-overlay', { duration: 0.6, translateY: '0%', ease: 'power2.inOut' }); },
-          async enter() { window.scrollTo(0,0); initParticles(); await gsap.to('.transition-overlay', { duration: 0.6, translateY: '-100%', ease: 'power2.inOut' }); }
-        }]
-      });
-      initParticles();
-    })();
-  </script>
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  © 2026 <span>Quintette Atout Vent</span> · Le Havre
+</footer>
+
+<script>
+  (function() {
+    "use strict";
+
+    const canvas = document.getElementById('particles-js');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x = Math.random() * w;
+        this.y = Math.random() * h;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 1;
+      }
+      update() {
+        this.x += this.vx; this.y += this.vy;
+        if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(91, 184, 184, 0.4)';
+        ctx.fill();
+      }
+    }
+
+    const init = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = document.getElementById('hero').offsetHeight;
+      particles = Array.from({ length: 60 }, () => new Particle());
+    };
+
+    const render = () => {
+      ctx.clearRect(0, 0, w, h);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(render);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    window.addEventListener('resize', init);
+    init();
+    render();
+
+    window.openLightbox = function(url) {
+      const img = document.getElementById('lightbox-img');
+      img.src = url;
+      document.getElementById('lightbox').style.display = 'flex';
+      setTimeout(() => document.getElementById('lightbox').classList.add('active'), 10);
+      document.body.style.overflow = 'hidden';
+    };
+
+    window.closeLightbox = function() {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('active');
+      setTimeout(() => { lb.style.display = 'none'; document.getElementById('lightbox-img').src = ""; }, 400);
+      document.body.style.overflow = 'auto';
+    };
+
+    window.addEventListener('keydown', e => {
+        if(e.key === "Escape") closeLightbox();
+        if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) e.preventDefault();
+    });
+  })();
+</script>
+
 </body>
 </html>
