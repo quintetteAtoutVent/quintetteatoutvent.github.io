@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#2a7f7f">
+<meta name="theme-color" content="#2d4f72">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -33,38 +33,44 @@
 <style>
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root {
-  --teal: #4a5568;    /* Bleu-gris */
-  --teal2: #2d3748;   /* Bleu-gris sombre pour les contrastes */
-  --green: #718096;   /* Bleu-gris moyen pour les nuances */
-  --gray: #4a5568;    /* Gris neutre pour le texte */
-  --light: #f7fafc;   /* Gris très clair "givré" */
-  --white: #ffffff;
-  --dark: #1a202c;    /* Anthracite */
-  --mist: #edf2f7;    /* Brume grise */
-  --accent: #90cdf4;  /* Bleu acier clair pour le survol */
+  /* ============================================================
+     PALETTE EXACTE — Maquette Atout Vent (analyse pixel)
+     ============================================================
+     HERO fond          → bleu-gris argenté CLAIR  #7d9fb5 (pas sombre !)
+     NAV                → même teinte, légèrement translucide
+     Titre "Atout Vent" → bleu marine profond       #1a2d4a
+     Sous-titre "Quint" → bleu marine moyen         #2d4f72
+     Bouton CTA         → bleu marine solide        #2d4f72, texte blanc
+     Texte description  → bleu-gris foncé lisible   #2c3d52
+     Section about      → blanc légèrement bleuté   #eef2f5
+     Section agenda     → gris brume doux           #d8e2ea
+     Section musiciens  → bleu marine très profond  #162033
+     Accent/highlights  → bleu acier argent         #8fa8b8
+     ============================================================ */
+  --teal:   #2d4f72;   /* Bleu marine moyen */
+  --teal2:  #1a2d4a;   /* Bleu marine profond */
+  --green:  #4a7a9b;   /* Bleu ardoise secondaire */
+  --gray:   #2c3d52;   /* Bleu-gris foncé — texte */
+  --light:  #eef2f5;   /* Blanc légèrement bleuté */
+  --white:  #f5f8fa;   /* Blanc cassé très doux */
+  --dark:   #162033;   /* Bleu marine très profond */
+  --mist:   #d8e2ea;   /* Gris brume agenda */
+  --accent: #8fa8b8;   /* Bleu acier argenté clair */
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;}
 
-/* --- CURSEUR CUSTOM (desktop uniquement) --- */
 @media (hover:hover) and (pointer:fine){
   *{cursor:none !important;}
-  #cursor-arrow,#cursor-hand{
-    position:fixed;pointer-events:none;z-index:99999;
-    width:24px;height:28px;top:0;left:0;
-  }
+  #cursor-arrow,#cursor-hand{position:fixed;pointer-events:none;z-index:99999;width:24px;height:28px;top:0;left:0;}
   #cursor-hand{display:none;}
 }
-@media (hover:none),(pointer:coarse){
-  #cursor-arrow,#cursor-hand{display:none !important;}
-}
+@media (hover:none),(pointer:coarse){#cursor-arrow,#cursor-hand{display:none !important;}}
 
-/* --- TRANSITION BARBA --- */
 .transition-overlay{
   position:fixed;top:0;left:0;width:100%;height:100vh;
   background:var(--teal);z-index:10000;
-  transform:translateY(100%);pointer-events:none;
-  will-change:transform;
+  transform:translateY(100%);pointer-events:none;will-change:transform;
 }
 
 /* ===================== NAV ===================== */
@@ -72,63 +78,42 @@ nav{
   position:fixed;top:0;width:100%;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
   padding:1rem 5%;
-  background:rgba(26,46,53,0.96);
+  /* Nav = bleu-gris moyen translucide, même famille que le hero */
+  background:rgba(100,133,155,0.90);
   backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(91,184,184,0.2);
+  border-bottom:1px solid rgba(255,255,255,0.12);
 }
 .logo{
   font-family:'Cormorant Garamond',serif;font-size:1.3rem;
-  font-weight:600;color:var(--accent);letter-spacing:3px;
-  text-transform:uppercase;line-height:1.1;
+  font-weight:600;color:rgba(255,255,255,0.92);
+  letter-spacing:3px;text-transform:uppercase;line-height:1.1;
 }
-.logo span{display:block;font-size:.65rem;letter-spacing:6px;font-weight:300;color:rgba(255,255,255,0.55);}
+.logo span{display:block;font-size:.65rem;letter-spacing:6px;font-weight:300;color:rgba(255,255,255,0.58);}
 
-/* Liens desktop */
 .nav-links{display:flex;gap:1.5rem;list-style:none;}
 .nav-links a{
-  color:rgba(255,255,255,0.8);text-decoration:none;
+  color:rgba(255,255,255,0.85);text-decoration:none;
   font-size:.68rem;letter-spacing:2px;text-transform:uppercase;transition:color .3s;
 }
-.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover{color:#ffffff;}
 
-/* Bouton hamburger */
-.hamburger{
-  display:none;flex-direction:column;gap:5px;
-  background:none;border:none;cursor:pointer;
-  padding:.4rem;z-index:200;
-}
-.hamburger span{
-  display:block;width:24px;height:2px;
-  background:var(--accent);border-radius:2px;
-  transition:transform .35s ease, opacity .25s ease;
-}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;}
+.hamburger span{display:block;width:24px;height:2px;background:rgba(255,255,255,0.85);border-radius:2px;transition:transform .35s ease,opacity .25s ease;}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-/* Drawer mobile */
 .nav-drawer{
-  display:none;
-  position:fixed;inset:0;z-index:150;
-  background:rgba(26,46,53,0.98);
+  display:none;position:fixed;inset:0;z-index:150;
+  background:rgba(22,32,51,0.97);
   flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;
   opacity:0;pointer-events:none;transition:opacity .35s ease;
 }
 .nav-drawer.open{opacity:1;pointer-events:all;}
-.nav-drawer a{
-  color:rgba(255,255,255,0.8);text-decoration:none;
-  font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;
-  letter-spacing:4px;text-transform:uppercase;
-  transition:color .25s;
-}
+.nav-drawer a{color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;transition:color .25s;}
 .nav-drawer a:hover{color:var(--accent);}
-.nav-drawer-sub{
-  display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;
-}
-.nav-drawer-sub a{
-  font-family:'Montserrat',sans-serif;font-size:.65rem;
-  letter-spacing:2px;color:rgba(255,255,255,0.4);font-weight:400;
-}
+.nav-drawer-sub{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;}
+.nav-drawer-sub a{font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:2px;color:rgba(255,255,255,0.4);font-weight:400;}
 
 @media(max-width:768px){
   .nav-links{display:none;}
@@ -141,53 +126,58 @@ nav{
 #hero{
   min-height:100svh;display:flex;align-items:center;
   justify-content:center;text-align:center;
-  position:relative;overflow:hidden;background:var(--dark);
+  position:relative;overflow:hidden;
+  /* Couleur de base du hero = bleu-gris argenté CLAIR */
+  background:#7d9fb5;
 }
 .hero-overlay{
   position:absolute;inset:0;
   background:
-    radial-gradient(ellipse at 60% 40%,rgba(91,184,184,0.12) 0%,transparent 60%),
-    radial-gradient(ellipse at 20% 80%,rgba(58,140,110,0.08) 0%,transparent 50%);
+    /* Cercles lumineux subtils visibles dans la maquette */
+    radial-gradient(ellipse 65% 65% at 68% 42%, rgba(255,255,255,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 45% at 18% 72%, rgba(255,255,255,0.10) 0%, transparent 50%),
+    /* Dégradé principal hero */
+    linear-gradient(160deg, #9abcce 0%, #7a9fb6 45%, #5f8499 100%);
 }
 .hero-content{position:relative;z-index:2;padding:2rem 1.5rem;width:100%;max-width:1000px;}
-.hero-orn{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:0 auto 1.5rem;}
-.hero-tag{font-size:.68rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.hero-orn{width:80px;height:2px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.55),transparent);margin:0 auto 1.5rem;}
+.hero-tag{font-size:.82rem;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,0.72);margin-bottom:1.2rem;}
 h1{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(3rem,9vw,7rem);
-  font-weight:600;line-height:1.0;color:var(--white);
+  font-weight:600;line-height:1.0;
+  /* Titre = bleu marine profond, lisible sur fond bleu-gris clair */
+  color:#1a2d4a;
   margin-bottom:.2rem;letter-spacing:6px;text-transform:uppercase;
   white-space:nowrap;
 }
 h1 em{
-  font-style:normal;color:var(--accent);display:block;
-  font-size:.72em;letter-spacing:10px;font-weight:300;
-  white-space:normal;
+  font-style:normal;
+  /* Sous-titre Quintette = bleu marine moyen */
+  color:#2d4f72;
+  display:block;font-size:.72em;letter-spacing:10px;font-weight:300;white-space:normal;
 }
-.hero-tag{font-size:.82rem;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
-.hero-desc{
-  max-width:700px;margin:1.8rem auto 3rem;
-  color:rgba(255,255,255,0.7);font-size:1rem;line-height:1.9;font-weight:300;
-}
-
 .hero-desc{
   max-width:600px;margin:1.5rem auto 2.5rem;
-  color:rgba(255,255,255,0.7);font-size:.88rem;line-height:1.9;font-weight:300;
+  color:rgba(22,32,51,0.75);
+  font-size:.88rem;line-height:1.9;font-weight:300;
 }
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 .btn{
   display:inline-block;padding:.8rem 2rem;
-  background:transparent;border:1px solid var(--accent);color:var(--accent);
+  background:transparent;border:1px solid rgba(22,32,51,0.35);color:rgba(22,32,51,0.80);
   text-decoration:none;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;
   transition:all .3s;font-family:'Montserrat',sans-serif;cursor:pointer;
 }
-.btn:hover,.btn.filled{background:var(--accent);color:var(--dark);}
-.btn.filled:hover{background:var(--teal2);border-color:var(--teal2);color:var(--white);}
+/* Bouton principal = bleu marine plein, texte blanc */
+.btn.filled{background:#2d4f72;border-color:#2d4f72;color:#ffffff;}
+.btn:hover{background:rgba(255,255,255,0.30);border-color:rgba(255,255,255,0.60);color:#1a2d4a;}
+.btn.filled:hover{background:#1a2d4a;border-color:#1a2d4a;color:#ffffff;}
 
 .scroll-dot{
   position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
   z-index:2;width:1px;height:50px;
-  background:linear-gradient(to bottom,var(--accent),transparent);
+  background:linear-gradient(to bottom,rgba(255,255,255,0.55),transparent);
   animation:sd 1.6s ease-in-out infinite;
 }
 @keyframes sd{
@@ -207,16 +197,13 @@ h1 em{
 /* ===================== SECTIONS ===================== */
 section{padding:6rem 5%;}
 .si{max-width:1100px;margin:0 auto;}
-.s-tag{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem;}
-.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;margin-bottom:.8rem;color:var(--dark);}
-.s-line{width:45px;height:2px;background:var(--accent);margin-bottom:2.5rem;}
+.s-tag{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;margin-bottom:.8rem;color:var(--teal2);}
+.s-line{width:45px;height:2px;background:var(--teal);margin-bottom:2.5rem;}
 
 /* --- ABOUT --- */
 #about{background:var(--light);}
-#about .about-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:5rem;align-items:center;
-}
+#about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 #about .about-grid img{width:100%;display:block;}
 @media(max-width:768px){
   #about .about-grid{grid-template-columns:1fr;gap:2.5rem;}
@@ -227,76 +214,47 @@ section{padding:6rem 5%;}
 /* ===================== CARROUSEL ===================== */
 #membres{background:var(--dark);}
 #membres .s-tag{color:var(--accent);}
-#membres .s-title{color:var(--white);}
+#membres .s-title{color:#e8edf2;}
 
 .carrousel{position:relative;width:100%;overflow:hidden;}
 .carrousel-track{display:flex;transition:transform .5s cubic-bezier(.4,0,.2,1);}
-
-/* Layout desktop */
-.slide{
-  min-width:100%;display:grid;
-  grid-template-columns:420px 1fr;
-  gap:0;align-items:stretch;
-}
+.slide{min-width:100%;display:grid;grid-template-columns:420px 1fr;gap:0;align-items:stretch;}
 .slide-img{position:relative;overflow:hidden;height:520px;}
-.slide-img img{
-  width:100%;height:100%;object-fit:cover;object-position:top;
-  display:block;transition:transform .6s ease;
-}
+.slide-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s ease;}
 .slide:hover .slide-img img{transform:scale(1.03);}
 .slide-content{
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(91,184,184,0.1);border-left:none;
-  padding:3rem 3.5rem;
-  display:flex;flex-direction:column;justify-content:center;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(143,168,184,0.12);border-left:none;
+  padding:3rem 3.5rem;display:flex;flex-direction:column;justify-content:center;
 }
-.slide-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(91,184,184,0.15);line-height:1;margin-bottom:1rem;}
+.slide-num{font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(143,168,184,0.10);line-height:1;margin-bottom:1rem;}
 .slide-inst{font-size:.62rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem;}
-.slide-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:var(--white);margin-bottom:.8rem;line-height:1.1;}
+.slide-name{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;color:#e8edf2;margin-bottom:.8rem;line-height:1.1;}
 .slide-line{width:40px;height:1px;background:var(--accent);margin-bottom:1.5rem;}
-.slide-bio{color:rgba(255,255,255,0.6);font-size:.83rem;line-height:1.9;font-weight:300;}
+.slide-bio{color:rgba(232,237,242,0.58);font-size:.83rem;line-height:1.9;font-weight:300;}
 
-/* Layout mobile carrousel */
 @media(max-width:768px){
-  .slide{
-    grid-template-columns:1fr;
-    grid-template-rows:auto 1fr;
-  }
-  .slide-img{
-    height:72vw;max-height:340px;
-    border-radius:0;
-  }
+  .slide{grid-template-columns:1fr;grid-template-rows:auto 1fr;}
+  .slide-img{height:72vw;max-height:340px;}
   .slide-img img{object-position:top center;}
-  .slide-content{
-    border:none;border-top:1px solid rgba(91,184,184,0.15);
-    padding:1.8rem 1.5rem 2rem;
-  }
+  .slide-content{border:none;border-top:1px solid rgba(143,168,184,0.12);padding:1.8rem 1.5rem 2rem;}
   .slide-num{font-size:2.5rem;margin-bottom:.5rem;}
   .slide-name{font-size:1.7rem;}
   .slide-bio{font-size:.8rem;}
 }
 
-/* Nav carrousel */
-.carr-nav{
-  display:flex;align-items:center;
-  justify-content:space-between;margin-top:1.5rem;
-}
+.carr-nav{display:flex;align-items:center;justify-content:space-between;margin-top:1.5rem;}
 .carr-dots{display:flex;gap:.7rem;align-items:center;}
-.dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(91,184,184,0.25);cursor:pointer;transition:all .3s;
-}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(143,168,184,0.25);cursor:pointer;transition:all .3s;}
 .dot.active{background:var(--accent);width:24px;border-radius:3px;}
 .carr-btns{display:flex;gap:.8rem;}
 .carr-btn{
-  width:48px;height:48px;
-  border:1px solid rgba(91,184,184,0.3);
+  width:48px;height:48px;border:1px solid rgba(143,168,184,0.3);
   background:transparent;color:var(--accent);font-size:1.1rem;
-  cursor:pointer;transition:all .3s;
-  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;
 }
 .carr-btn:hover{background:var(--accent);color:var(--dark);border-color:var(--accent);}
-.carr-counter{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(255,255,255,0.3);}
+.carr-counter{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(232,237,242,0.3);}
 .carr-counter span{color:var(--accent);}
 
 @media(max-width:480px){
@@ -312,42 +270,27 @@ section{padding:6rem 5%;}
   display:grid;grid-template-columns:120px 1fr auto;
   align-items:center;gap:2rem;
   background:var(--white);padding:1.5rem 2rem;
-  border-left:3px solid transparent;
-  transition:border-color .3s,box-shadow .3s;
+  border-left:3px solid transparent;transition:border-color .3s,box-shadow .3s;
 }
-.concert:hover{border-left-color:var(--accent);box-shadow:4px 0 20px rgba(42,127,127,0.08);}
+.concert:hover{border-left-color:var(--teal);box-shadow:4px 0 20px rgba(45,79,114,0.08);}
 .concert-date{text-align:center;}
 .concert-date .day{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:600;line-height:1;color:var(--teal);}
 .concert-date .month{font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--gray);}
 .concert-date .year{font-size:.65rem;color:var(--gray);opacity:.6;}
-.concert-info h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:.3rem;}
+.concert-info h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;margin-bottom:.3rem;color:var(--teal2);}
 .concert-info p{font-size:.8rem;color:var(--gray);font-weight:300;}
 .concert-info .lieu{font-size:.72rem;letter-spacing:1px;color:var(--teal);margin-top:.3rem;text-transform:uppercase;}
 .concert-info .prog{font-size:.75rem;color:var(--gray);font-style:italic;margin-top:.3rem;}
-.concert-badge{
-  font-size:.65rem;letter-spacing:2px;text-transform:uppercase;
-  padding:.35rem .9rem;border:1px solid var(--accent);color:var(--teal);
-  white-space:nowrap;
-}
+.concert-badge{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:.35rem .9rem;border:1px solid var(--teal);color:var(--teal);white-space:nowrap;}
 
 .affiche-wrap{margin-top:3rem;text-align:center;}
-.affiche-wrap img{max-width:340px;width:100%;border-radius:4px;box-shadow:0 20px 60px rgba(42,127,127,0.2);border:1px solid rgba(42,127,127,0.15);}
+.affiche-wrap img{max-width:340px;width:100%;border-radius:4px;box-shadow:0 20px 60px rgba(45,79,114,0.18);border:1px solid rgba(45,79,114,0.10);}
 
 @media(max-width:640px){
-  .concert{
-    grid-template-columns:60px 1fr;
-    grid-template-rows:auto auto;
-    gap:.8rem 1rem;
-    padding:1.2rem 1rem;
-    position:relative;
-  }
+  .concert{grid-template-columns:60px 1fr;grid-template-rows:auto auto;gap:.8rem 1rem;padding:1.2rem 1rem;position:relative;}
   .concert-date{grid-row:1;grid-column:1;}
   .concert-info{grid-row:1;grid-column:2;}
-  .concert-badge{
-    grid-row:2;grid-column:1 / -1;
-    display:inline-block;width:fit-content;
-    font-size:.58rem;padding:.25rem .7rem;
-  }
+  .concert-badge{grid-row:2;grid-column:1 / -1;display:inline-block;width:fit-content;font-size:.58rem;padding:.25rem .7rem;}
   .concert-date .day{font-size:1.8rem;}
   .concert-date .month,.concert-date .year{font-size:.6rem;}
   .concert-info h3{font-size:1rem;}
@@ -357,82 +300,51 @@ section{padding:6rem 5%;}
 /* ===================== CONTACT ===================== */
 #contact{background:var(--white);}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.c-link{
-  display:flex;align-items:center;gap:.8rem;
-  color:var(--gray);text-decoration:none;font-size:.85rem;
-  transition:color .3s;margin-bottom:.7rem;
-}
+.c-link{display:flex;align-items:center;gap:.8rem;color:var(--gray);text-decoration:none;font-size:.85rem;transition:color .3s;margin-bottom:.7rem;}
 .c-link:hover{color:var(--teal);}
 .social-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
-.soc-btn{
-  display:flex;align-items:center;gap:.5rem;
-  padding:.65rem 1.2rem;border:1px solid var(--teal);
-  color:var(--teal);text-decoration:none;font-size:.72rem;
-  letter-spacing:1px;transition:all .3s;
-}
-.soc-btn:hover{background:var(--teal);color:var(--white);}
+.soc-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.2rem;border:1px solid var(--teal);color:var(--teal);text-decoration:none;font-size:.72rem;letter-spacing:1px;transition:all .3s;}
+.soc-btn:hover{background:var(--teal);color:#ffffff;}
 
 .form-group{margin-bottom:1rem;}
 .form-group label{display:block;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;}
 .form-group input,.form-group textarea,.form-group select{
-  width:100%;background:var(--light);
-  border:1px solid rgba(42,127,127,0.2);
-  padding:.75rem 1rem;font-family:'Montserrat',sans-serif;
-  font-size:.83rem;color:var(--dark);outline:none;
-  transition:border-color .3s;resize:vertical;appearance:none;
+  width:100%;background:var(--light);border:1px solid rgba(45,79,114,0.2);
+  padding:.75rem 1rem;font-family:'Montserrat',sans-serif;font-size:.83rem;color:var(--dark);
+  outline:none;transition:border-color .3s;resize:vertical;appearance:none;
 }
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal);}
 .form-group textarea{min-height:110px;}
-.btn-submit{
-  padding:.85rem 2rem;background:var(--teal);border:none;
-  color:var(--white);font-family:'Montserrat',sans-serif;
-  font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
-  cursor:pointer;transition:background .3s;
-}
+.btn-submit{padding:.85rem 2rem;background:var(--teal);border:none;color:#ffffff;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .3s;}
 .btn-submit:hover{background:var(--teal2);}
 
-@media(max-width:768px){
-  .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
-}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:2.5rem;}}
 
 /* ===================== FOOTER ===================== */
-footer{
-  background:var(--dark);color:rgba(255,255,255,0.4);
-  text-align:center;padding:2rem;font-size:.7rem;
-  letter-spacing:1px;border-top:1px solid rgba(91,184,184,0.1);
-}
+footer{background:var(--dark);color:rgba(232,237,242,0.4);text-align:center;padding:2rem;font-size:.7rem;letter-spacing:1px;border-top:1px solid rgba(143,168,184,0.1);}
 footer span{color:var(--accent);}
 .footer-social{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
-.footer-social a{
-  color:rgba(255,255,255,0.4);text-decoration:none;
-  font-size:.7rem;letter-spacing:1px;transition:color .3s;
-}
+.footer-social a{color:rgba(232,237,242,0.4);text-decoration:none;font-size:.7rem;letter-spacing:1px;transition:color .3s;}
 .footer-social a:hover{color:var(--accent);}
 
-@media(max-width:480px){
-  .footer-social{gap:1rem;}
-  footer{font-size:.62rem;padding:1.5rem 1rem;}
-}
+@media(max-width:480px){.footer-social{gap:1rem;}footer{font-size:.62rem;padding:1.5rem 1rem;}}
 </style>
 </head>
 <body data-barba="wrapper">
 
-<!-- CURSEUR CUSTOM -->
 <svg id="cursor-arrow" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M2 2L2 20L7.5 14.5L11 21L13.5 20L10 13.5L17 13.5L2 2Z" fill="#5bb8b8" stroke="#1a2e35" stroke-width="1"/>
+  <path d="M2 2L2 20L7.5 14.5L11 21L13.5 20L10 13.5L17 13.5L2 2Z" fill="#2d4f72" stroke="#1a2d4a" stroke-width="1"/>
 </svg>
 <svg id="cursor-hand" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8 12V4a2 2 0 0 1 4 0v8" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M12 12V9a2 2 0 0 1 4 0v3" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M16 12v-1a2 2 0 0 1 4 0v5c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M6 13V7a2 2 0 0 1 2-2" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path fill="#5bb8b8" fill-opacity="0.15" d="M8 12V4a2 2 0 0 1 4 0v8h4V9a2 2 0 0 1 4 0v8c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0v3H8V12z"/>
+  <path d="M8 12V4a2 2 0 0 1 4 0v8" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M12 12V9a2 2 0 0 1 4 0v3" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M16 12v-1a2 2 0 0 1 4 0v5c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M6 13V7a2 2 0 0 1 2-2" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path fill="#2d4f72" fill-opacity="0.15" d="M8 12V4a2 2 0 0 1 4 0v8h4V9a2 2 0 0 1 4 0v8c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0v3H8V12z"/>
 </svg>
 
-<!-- RIDEAU ÉMERAUDE -->
 <div class="transition-overlay"></div>
 
-<!-- NAV -->
 <nav>
   <div class="logo">Atout Vent<span>Quintette</span></div>
   <ul class="nav-links">
@@ -446,7 +358,6 @@ footer span{color:var(--accent);}
   </button>
 </nav>
 
-<!-- Drawer mobile -->
 <nav class="nav-drawer" id="nav-drawer" aria-hidden="true">
   <a href="#about" class="drawer-link">L'ensemble</a>
   <a href="#membres" class="drawer-link">Les Musiciens</a>
@@ -458,10 +369,8 @@ footer span{color:var(--accent);}
   </div>
 </nav>
 
-<!-- CONTENEUR BARBA -->
 <main data-barba="container" data-barba-namespace="home">
 
-<!-- HERO -->
 <section id="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -477,7 +386,6 @@ footer span{color:var(--accent);}
   <div class="scroll-dot"></div>
 </section>
 
-<!-- ENSEMBLE -->
 <section id="about">
   <div class="si">
     <div class="about-grid">
@@ -494,7 +402,6 @@ footer span{color:var(--accent);}
   </div>
 </section>
 
-<!-- MUSICIENS CARROUSEL -->
 <section id="membres">
   <div class="si">
     <p class="s-tag">Les musiciens</p>
@@ -504,9 +411,7 @@ footer span{color:var(--accent);}
       <div class="carrousel-track" id="track">
 
         <div class="slide">
-          <div class="slide-img">
-            <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Nicolas.png" alt="Nicolas Venault, cor et fondateur du Quintette Atout Vent" loading="lazy">
-          </div>
+          <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Nicolas.png" alt="Nicolas Venault, cor et fondateur du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
             <div class="slide-num">01</div>
             <p class="slide-inst">Cor · Fondateur</p>
@@ -517,9 +422,7 @@ footer span{color:var(--accent);}
         </div>
 
         <div class="slide">
-          <div class="slide-img">
-            <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/aelsa.png" alt="Elsa Le Roux, bassoniste du Quintette Atout Vent" loading="lazy">
-          </div>
+          <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/aelsa.png" alt="Elsa Le Roux, bassoniste du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
             <div class="slide-num">02</div>
             <p class="slide-inst">Basson</p>
@@ -530,9 +433,7 @@ footer span{color:var(--accent);}
         </div>
 
         <div class="slide">
-          <div class="slide-img">
-            <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/lucile%20(2).png" alt="Lucile Leconte, flûtiste du Quintette Atout Vent" loading="lazy">
-          </div>
+          <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/lucile%20(2).png" alt="Lucile Leconte, flûtiste du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
             <div class="slide-num">03</div>
             <p class="slide-inst">Flûte</p>
@@ -543,9 +444,7 @@ footer span{color:var(--accent);}
         </div>
 
         <div class="slide">
-          <div class="slide-img">
-            <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Gemini_Generated_Image_1apmim1apmim1apm.png" alt="Elisabeth Lecoq, hautboïste et pianiste du Quintette Atout Vent" loading="lazy">
-          </div>
+          <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Gemini_Generated_Image_1apmim1apmim1apm.png" alt="Elisabeth Lecoq, hautboïste et pianiste du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
             <div class="slide-num">04</div>
             <p class="slide-inst">Hautbois &amp; Piano</p>
@@ -556,9 +455,7 @@ footer span{color:var(--accent);}
         </div>
 
         <div class="slide">
-          <div class="slide-img">
-            <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Emmanuel.png" alt="Emmanuel Battaglia, clarinettiste et arrangeur du Quintette Atout Vent" loading="lazy">
-          </div>
+          <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Emmanuel.png" alt="Emmanuel Battaglia, clarinettiste et arrangeur du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
             <div class="slide-num">05</div>
             <p class="slide-inst">Clarinette &amp; Arrangements</p>
@@ -588,7 +485,6 @@ footer span{color:var(--accent);}
   </div>
 </section>
 
-<!-- AGENDA -->
 <section id="agenda">
   <div class="si">
     <p class="s-tag">Agenda</p>
@@ -639,12 +535,11 @@ footer span{color:var(--accent);}
   </div>
 </section>
 
-<div style="text-align:center;margin-top:4rem;padding:3rem 5%;background:var(--light);border-top:1px solid rgba(42,127,127,0.1);">
+<div style="text-align:center;margin-top:4rem;padding:3rem 5%;background:var(--light);border-top:1px solid rgba(45,79,114,0.1);">
   <p style="font-size:.8rem;color:var(--gray);margin-bottom:1.5rem;font-weight:300;letter-spacing:1px;">Envie de voir nos précédentes représentations ?</p>
-  <a href="archives.html" class="btn">Découvrir nos précédents concerts</a>
+  <a href="archives.html" class="btn" style="color:var(--teal);border-color:var(--teal);">Découvrir nos précédents concerts</a>
 </div>
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="si">
     <div class="contact-grid">
@@ -654,10 +549,7 @@ footer span{color:var(--accent);}
         <div class="s-line"></div>
         <div class="c-link" style="cursor:default;">
           ✉️ atoutvent76@gmail.com
-          <button
-            onclick="navigator.clipboard.writeText('atoutvent76@gmail.com').then(()=>{this.textContent='✓ Copié';setTimeout(()=>this.textContent='Copier',2000)})"
-            style="margin-left:.5rem;padding:.2rem .6rem;border:1px solid var(--teal);background:transparent;color:var(--teal);font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;"
-          >Copier</button>
+          <button onclick="navigator.clipboard.writeText('atoutvent76@gmail.com').then(()=>{this.textContent='✓ Copié';setTimeout(()=>this.textContent='Copier',2000)})" style="margin-left:.5rem;padding:.2rem .6rem;border:1px solid var(--teal);background:transparent;color:var(--teal);font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">Copier</button>
         </div>
         <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer" class="c-link">📷 @atout_vent_quintette</a>
         <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer" class="c-link">👤 Quintette Atout Vent</a>
@@ -681,7 +573,7 @@ footer span{color:var(--accent);}
           </div>
           <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Décrivez votre projet..." required></textarea></div>
           <button type="submit" class="btn-submit">Envoyer le message</button>
-          <div id="form-confirm" style="display:none;margin-top:1.5rem;padding:1.2rem 1.5rem;border-left:3px solid var(--accent);background:var(--light);">
+          <div id="form-confirm" style="display:none;margin-top:1.5rem;padding:1.2rem 1.5rem;border-left:3px solid var(--teal);background:var(--light);">
             <p style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--teal);margin-bottom:.3rem;">Message envoyé ✓</p>
             <p style="font-size:.8rem;color:var(--gray);font-weight:300;">Merci pour votre message. Nous vous répondrons dans les meilleurs délais.</p>
           </div>
@@ -697,84 +589,46 @@ footer span{color:var(--accent);}
     <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer">👤 Facebook</a>
     <a href="mailto:atoutvent76@gmail.com">✉️ atoutvent76@gmail.com</a>
   </div>
-  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(91,184,184,0.2),transparent);margin-bottom:1.5rem;"></div>
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(143,168,184,0.2),transparent);margin-bottom:1.5rem;"></div>
   © 2026 <span>Quintette Atout Vent</span> · Le Havre, Normandie · Tous droits réservés · <span>Battaglia Laurent</span>
 </footer>
 
 </main>
 
-<!-- SCRIPTS -->
 <script src="https://unpkg.com/@barba/core"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
 <script>
 (function() {
   "use strict";
-
   let cur = 0;
   const total = 5;
   const nums = ['01','02','03','04','05'];
 
-  /* ---- HAMBURGER ---- */
   const hamburger = document.getElementById('hamburger');
   const drawer    = document.getElementById('nav-drawer');
 
   function openDrawer() {
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded','true');
-    drawer.classList.add('open');
-    drawer.setAttribute('aria-hidden','false');
+    hamburger.classList.add('open');hamburger.setAttribute('aria-expanded','true');
+    drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
   }
   function closeDrawer() {
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded','false');
-    drawer.classList.remove('open');
-    drawer.setAttribute('aria-hidden','true');
+    hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');
+    drawer.classList.remove('open');drawer.setAttribute('aria-hidden','true');
     document.body.style.overflow = '';
   }
+  hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
+  document.querySelectorAll('.drawer-link').forEach(link => link.addEventListener('click', closeDrawer));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-  hamburger.addEventListener('click', () => {
-    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
-  });
-
-  document.querySelectorAll('.drawer-link').forEach(link => {
-    link.addEventListener('click', closeDrawer);
-  });
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeDrawer();
-  });
-
-  /* ---- CARROUSEL ---- */
   function initPageScripts() {
     const track = document.getElementById('track');
     if (!track) return;
-
     track.style.transform = 'translateX(-' + cur * 100 + '%)';
-
     let startX = 0, startY = 0, isDragging = false;
-
-    track.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-      isDragging = true;
-    }, {passive: true});
-
-    track.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      const dx = Math.abs(e.touches[0].clientX - startX);
-      const dy = Math.abs(e.touches[0].clientY - startY);
-      if (dy > dx) isDragging = false;
-    }, {passive: true});
-
-    track.addEventListener('touchend', e => {
-      if (!isDragging) return;
-      const diff = startX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) window.move(diff > 0 ? 1 : -1);
-      isDragging = false;
-    }, {passive: true});
-
+    track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; startY = e.touches[0].clientY; isDragging = true; }, {passive: true});
+    track.addEventListener('touchmove', e => { if (!isDragging) return; const dx = Math.abs(e.touches[0].clientX - startX); const dy = Math.abs(e.touches[0].clientY - startY); if (dy > dx) isDragging = false; }, {passive: true});
+    track.addEventListener('touchend', e => { if (!isDragging) return; const diff = startX - e.changedTouches[0].clientX; if (Math.abs(diff) > 50) window.move(diff > 0 ? 1 : -1); isDragging = false; }, {passive: true});
     updateUI();
   }
 
@@ -790,45 +644,27 @@ footer span{color:var(--accent);}
   window.move = function(dir) { cur = (cur + dir + total) % total; updateUI(); };
   window.goTo = function(i)   { cur = i; updateUI(); };
 
-  /* ---- BARBA ---- */
   barba.init({
     sync: true,
     transitions: [{
       name: 'emeraude-transition',
-      async leave() {
-        const done = this.async();
-        gsap.to('.transition-overlay', {duration:.6, translateY:'0%', ease:'power2.inOut', onComplete:done});
-      },
+      async leave() { const done = this.async(); gsap.to('.transition-overlay', {duration:.6, translateY:'0%', ease:'power2.inOut', onComplete:done}); },
       async enter() {
         window.scrollTo(0, 0);
-        gsap.to('.transition-overlay', {
-          duration:.6, translateY:'-100%', ease:'power2.inOut',
-          onComplete: () => gsap.set('.transition-overlay', {translateY:'100%'})
-        });
+        gsap.to('.transition-overlay', {duration:.6, translateY:'-100%', ease:'power2.inOut', onComplete: () => gsap.set('.transition-overlay', {translateY:'100%'})});
         initPageScripts();
       }
     }]
   });
-
   initPageScripts();
 })();
 </script>
-
-<!-- CURSEUR : desktop uniquement -->
 <script>
 (function(){
   if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-
   const arrow = document.getElementById('cursor-arrow');
   const hand  = document.getElementById('cursor-hand');
-
-  window.addEventListener('mousemove', e => {
-    arrow.style.left = e.clientX + 'px';
-    arrow.style.top  = e.clientY + 'px';
-    hand.style.left  = e.clientX + 'px';
-    hand.style.top   = e.clientY + 'px';
-  });
-
+  window.addEventListener('mousemove', e => { arrow.style.left = e.clientX + 'px'; arrow.style.top = e.clientY + 'px'; hand.style.left = e.clientX + 'px'; hand.style.top = e.clientY + 'px'; });
   function bindHover() {
     document.querySelectorAll('a,button,.carr-btn,.dot,.btn,.soc-btn').forEach(el => {
       el.addEventListener('mouseenter', () => { arrow.style.display='none'; hand.style.display='block'; });
@@ -838,6 +674,5 @@ footer span{color:var(--accent);}
   bindHover();
 })();
 </script>
-
 </body>
 </html>
