@@ -31,17 +31,10 @@
 <link rel="canonical" href="https://quintetteatoutvent.github.io/">
 <title>Quintette Atout Vent — Musique de chambre au Havre</title>
 <style>
-  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root {
-  --teal:   #2d4f72;
-  --teal2:  #1a2d4a;
-  --green:  #4a7a9b;
-  --gray:   #2c3d52;
-  --light:  #eef2f5;
-  --white:  #f5f8fa;
-  --dark:   #162033;
-  --mist:   #d8e2ea;
-  --accent: #8fa8b8;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --teal:#2d4f72;--teal2:#1a2d4a;--green:#4a7a9b;--gray:#2c3d52;
+  --light:#eef2f5;--white:#f5f8fa;--dark:#162033;--mist:#d8e2ea;--accent:#8fa8b8;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;}
@@ -59,7 +52,6 @@ body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dar
   transform:translateY(100%);pointer-events:none;will-change:transform;
 }
 
-/* ===================== NAV ===================== */
 nav{
   position:fixed;top:0;width:100%;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
@@ -73,12 +65,8 @@ nav{
   font-family:'Cormorant Garamond',serif;font-size:1.3rem;
   font-weight:600;color:rgba(255,255,255,0.92);
   letter-spacing:3px;text-transform:uppercase;line-height:1.1;
-  text-decoration:none;
 }
-.logo-img{
-  height:44px;width:44px;object-fit:contain;
-  flex-shrink:0;
-}
+.logo-img{height:44px;width:44px;object-fit:contain;flex-shrink:0;}
 .logo-text{display:flex;flex-direction:column;}
 .logo-text span{display:block;font-size:.65rem;letter-spacing:6px;font-weight:300;color:rgba(255,255,255,0.58);}
 
@@ -115,7 +103,6 @@ nav{
   .logo-img{height:38px;width:38px;}
 }
 
-/* ===================== HERO ===================== */
 #hero{
   min-height:100svh;display:flex;align-items:center;
   justify-content:center;text-align:center;
@@ -140,16 +127,8 @@ h1{
   margin-bottom:.2rem;letter-spacing:6px;text-transform:uppercase;
   white-space:nowrap;
 }
-h1 em{
-  font-style:normal;
-  color:#2d4f72;
-  display:block;font-size:.72em;letter-spacing:10px;font-weight:300;white-space:normal;
-}
-.hero-desc{
-  max-width:600px;margin:1.5rem auto 2.5rem;
-  color:rgba(22,32,51,0.75);
-  font-size:.88rem;line-height:1.9;font-weight:300;
-}
+h1 em{font-style:normal;color:#2d4f72;display:block;font-size:.72em;letter-spacing:10px;font-weight:300;white-space:normal;}
+.hero-desc{max-width:600px;margin:1.5rem auto 2.5rem;color:rgba(22,32,51,0.75);font-size:.88rem;line-height:1.9;font-weight:300;}
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
 .btn{
   display:inline-block;padding:.8rem 2rem;
@@ -167,10 +146,7 @@ h1 em{
   background:linear-gradient(to bottom,rgba(255,255,255,0.55),transparent);
   animation:sd 1.6s ease-in-out infinite;
 }
-@keyframes sd{
-  0%,100%{opacity:0;transform:translateX(-50%) scaleY(0);}
-  50%{opacity:1;transform:translateX(-50%) scaleY(1);}
-}
+@keyframes sd{0%,100%{opacity:0;transform:translateX(-50%) scaleY(0);}50%{opacity:1;transform:translateX(-50%) scaleY(1);}}
 
 @media(max-width:480px){
   .hero-tag{font-size:.6rem;letter-spacing:3px;}
@@ -181,14 +157,12 @@ h1 em{
   .scroll-dot{display:none;}
 }
 
-/* ===================== SECTIONS ===================== */
 section{padding:6rem 5%;}
 .si{max-width:1100px;margin:0 auto;}
 .s-tag{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:.5rem;}
 .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;margin-bottom:.8rem;color:var(--teal2);}
 .s-line{width:45px;height:2px;background:var(--teal);margin-bottom:2.5rem;}
 
-/* --- ABOUT --- */
 #about{background:var(--light);}
 #about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
 #about .about-grid img{width:100%;display:block;}
@@ -198,7 +172,6 @@ section{padding:6rem 5%;}
   section{padding:4rem 5%;}
 }
 
-/* ===================== CARROUSEL ===================== */
 #membres{background:var(--dark);}
 #membres .s-tag{color:var(--accent);}
 #membres .s-title{color:#e8edf2;}
@@ -250,7 +223,6 @@ section{padding:6rem 5%;}
   .dot.active{width:18px;}
 }
 
-/* ===================== AGENDA ===================== */
 #agenda{background:var(--mist);}
 .agenda-list{display:flex;flex-direction:column;gap:1px;}
 .concert{
@@ -269,7 +241,6 @@ section{padding:6rem 5%;}
 .concert-info .lieu{font-size:.72rem;letter-spacing:1px;color:var(--teal);margin-top:.3rem;text-transform:uppercase;}
 .concert-info .prog{font-size:.75rem;color:var(--gray);font-style:italic;margin-top:.3rem;}
 .concert-badge{font-size:.65rem;letter-spacing:2px;text-transform:uppercase;padding:.35rem .9rem;border:1px solid var(--teal);color:var(--teal);white-space:nowrap;}
-
 .affiche-wrap{margin-top:3rem;text-align:center;}
 .affiche-wrap img{max-width:340px;width:100%;border-radius:4px;box-shadow:0 20px 60px rgba(45,79,114,0.18);border:1px solid rgba(45,79,114,0.10);}
 
@@ -284,7 +255,6 @@ section{padding:6rem 5%;}
   .affiche-wrap img{max-width:260px;}
 }
 
-/* ===================== CONTACT ===================== */
 #contact{background:var(--white);}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
 .c-link{display:flex;align-items:center;gap:.8rem;color:var(--gray);text-decoration:none;font-size:.85rem;transition:color .3s;margin-bottom:.7rem;}
@@ -292,7 +262,6 @@ section{padding:6rem 5%;}
 .social-links{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
 .soc-btn{display:flex;align-items:center;gap:.5rem;padding:.65rem 1.2rem;border:1px solid var(--teal);color:var(--teal);text-decoration:none;font-size:.72rem;letter-spacing:1px;transition:all .3s;}
 .soc-btn:hover{background:var(--teal);color:#ffffff;}
-
 .form-group{margin-bottom:1rem;}
 .form-group label{display:block;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;}
 .form-group input,.form-group textarea,.form-group select{
@@ -304,16 +273,13 @@ section{padding:6rem 5%;}
 .form-group textarea{min-height:110px;}
 .btn-submit{padding:.85rem 2rem;background:var(--teal);border:none;color:#ffffff;font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .3s;}
 .btn-submit:hover{background:var(--teal2);}
-
 @media(max-width:768px){.contact-grid{grid-template-columns:1fr;gap:2.5rem;}}
 
-/* ===================== FOOTER ===================== */
 footer{background:var(--dark);color:rgba(232,237,242,0.4);text-align:center;padding:2rem;font-size:.7rem;letter-spacing:1px;border-top:1px solid rgba(143,168,184,0.1);}
 footer span{color:var(--accent);}
 .footer-social{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap;}
 .footer-social a{color:rgba(232,237,242,0.4);text-decoration:none;font-size:.7rem;letter-spacing:1px;transition:color .3s;}
 .footer-social a:hover{color:var(--accent);}
-
 @media(max-width:480px){.footer-social{gap:1rem;}footer{font-size:.62rem;padding:1.5rem 1rem;}}
 </style>
 </head>
@@ -399,7 +365,6 @@ footer span{color:var(--accent);}
     <div class="s-line"></div>
     <div class="carrousel">
       <div class="carrousel-track" id="track">
-
         <div class="slide">
           <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Nicolas.png" alt="Nicolas Venault, cor et fondateur du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
@@ -410,7 +375,6 @@ footer span{color:var(--accent);}
             <p class="slide-bio">Originaire de Châlons-en-Champagne, formé auprès de Patrice Petitdidier à Gennevilliers et à la musique militaire de Versailles. 1er cor à l'Orchestre d'Harmonie du Havre, membre de l'Orchestre Symphonique de la Pointe de Caux (2020–2023).</p>
           </div>
         </div>
-
         <div class="slide">
           <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/aelsa.png" alt="Elsa Le Roux, bassoniste du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
@@ -421,7 +385,6 @@ footer span{color:var(--accent);}
             <p class="slide-bio">Élève de Michel Denize au conservatoire du Havre, perfectionnée à Paris et Gennevilliers. Ancienne membre de l'orchestre régional des jeunes de Normandie. 1er basson à l'Orchestre Symphonique de la Pointe de Caux, membre du trio d'anches Divertimento.</p>
           </div>
         </div>
-
         <div class="slide">
           <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/lucile%20(2).png" alt="Lucile Leconte, flûtiste du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
@@ -432,7 +395,6 @@ footer span{color:var(--accent);}
             <p class="slide-bio">Elle a étudié auprès de Kouchyar Shahroudi au Conservatoire du Havre, puis de Jean-Christophe Falala au Conservatoire de Rouen où elle a validé une licence de musicien-interprète. Elle a ensuite intégré le Cefedem de Normandie, où elle a obtenu son Diplôme d'État de professeur de musique en 2025.</p>
           </div>
         </div>
-
         <div class="slide">
           <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/658924878_1598234811673176_1117676698633538349_n.jpg" alt="Elisabeth Lecoq, hautboïste et pianiste du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
@@ -443,7 +405,6 @@ footer span{color:var(--accent);}
             <p class="slide-bio">Pianiste professionnelle (soliste, concertiste, professeure), tournée vers le hautbois en 2012. Fondatrice du trio d'anches Divertimento. 1er hautbois solo à l'Orchestre Symphonique de la Pointe de Caux.</p>
           </div>
         </div>
-
         <div class="slide">
           <div class="slide-img"><img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Emmanuel.png" alt="Emmanuel Battaglia, clarinettiste et arrangeur du Quintette Atout Vent" loading="lazy"></div>
           <div class="slide-content">
@@ -454,10 +415,8 @@ footer span{color:var(--accent);}
             <p class="slide-bio">Formé à Notre-Dame-de-Gravenchon et à la musique militaire d'Angers. Arrangeur pour l'ensemble. 1ère clarinette à l'Orchestre du Havre et à l'Orchestre Symphonique de la Pointe de Caux.</p>
           </div>
         </div>
-
       </div>
     </div>
-
     <div class="carr-nav">
       <div class="carr-dots" id="dots">
         <div class="dot active" onclick="goTo(0)"></div>
@@ -481,7 +440,6 @@ footer span{color:var(--accent);}
     <h2 class="s-title">Prochains concerts</h2>
     <div class="s-line"></div>
     <div class="agenda-list">
-
       <div class="concert">
         <div class="concert-date"><div class="day">25</div><div class="month">Avril</div><div class="year">2026</div></div>
         <div class="concert-info">
@@ -492,26 +450,23 @@ footer span{color:var(--accent);}
         </div>
         <span class="concert-badge">À venir</span>
       </div>
-     
       <div class="concert">
         <div class="concert-date"><div class="day">01</div><div class="month">Mai</div><div class="year">2026</div></div>
         <div class="concert-info">
           <h3>Date disponible — Nous contacter pour organiser un concert</h3>
           <p class="lieu">📍 Lieu à définir</p>
-          <p style="font-size:.8rem;color:var(--gray);margin-top:.3rem;">Vendredi 1er mai 2026 · Contactez-nous : <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcddc8d3c9c8cad9d2c88b8afcdbd1ddd5d092dfd3d1">[email&#160;protected]</a></p>
+          <p style="font-size:.8rem;color:var(--gray);margin-top:.3rem;">Vendredi 1er mai 2026 · Contactez-nous : atoutvent76@gmail.com</p>
         </div>
         <span class="concert-badge" style="border-color:#f0a500;color:#f0a500;">Concert disponible</span>
       </div>
-
     </div>
-
-  <div class="affiche-wrap">
-  <p style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:1.2rem;">Affiche &amp; programme</p>
-  <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:flex-start;">
-    <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Affiche%20abbaye.png" alt="Affiche du concert du Quintette Atout Vent" loading="lazy" width="340" height="480">
-    <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Programme%20abbaye.png" alt="Programme du concert du Quintette Atout Vent" loading="lazy" width="340" height="480">
-  </div>
-</div>
+    <div class="affiche-wrap">
+      <p style="font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:1.2rem;">Affiche &amp; programme</p>
+      <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;align-items:flex-start;">
+        <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Affiche%20abbaye.png" alt="Affiche du concert du Quintette Atout Vent" loading="lazy" width="340" height="480">
+        <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/Programme%20abbaye.png" alt="Programme du concert du Quintette Atout Vent" loading="lazy" width="340" height="480">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -528,7 +483,7 @@ footer span{color:var(--accent);}
         <h2 class="s-title">Nous contacter</h2>
         <div class="s-line"></div>
         <div class="c-link" style="cursor:default;">
-          ✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dfbeabb0aaaba9bab1abe8e99fb8b2beb6b3f1bcb0b2">[email&#160;protected]</a>
+          ✉️ atoutvent76@gmail.com
           <button onclick="navigator.clipboard.writeText('atoutvent76@gmail.com').then(()=>{this.textContent='✓ Copié';setTimeout(()=>this.textContent='Copier',2000)})" style="margin-left:.5rem;padding:.2rem .6rem;border:1px solid var(--teal);background:transparent;color:var(--teal);font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;">Copier</button>
         </div>
         <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer" class="c-link">📷 @atout_vent_quintette</a>
@@ -567,7 +522,7 @@ footer span{color:var(--accent);}
   <div class="footer-social">
     <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
     <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer">👤 Facebook</a>
-    <a href="/cdn-cgi/l/email-protection#07667368727371626973303147606a666e6b2964686a">✉️ <span class="__cf_email__" data-cfemail="69081d061c1d1f0c071d5e5f290e04080005470a0604">[email&#160;protected]</span></a>
+    <a href="mailto:atoutvent76@gmail.com">✉️ atoutvent76@gmail.com</a>
   </div>
   <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(143,168,184,0.2),transparent);margin-bottom:1.5rem;"></div>
   © 2026 <span>Quintette Atout Vent</span> · Le Havre, Normandie · Tous droits réservés · <span>Battaglia Laurent</span>
@@ -575,7 +530,7 @@ footer span{color:var(--accent);}
 
 </main>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://unpkg.com/@barba/core"></script>
+<script src="https://unpkg.com/@barba/core"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
 (function() {
@@ -644,4 +599,20 @@ footer span{color:var(--accent);}
   if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
   const arrow = document.getElementById('cursor-arrow');
   const hand  = document.getElementById('cursor-hand');
-  window.addEventListener('mousemove', e => { arrow.style.left = e.clientX + 'px'; ar
+  window.addEventListener('mousemove', e => {
+    arrow.style.left = e.clientX + 'px';
+    arrow.style.top  = e.clientY + 'px';
+    hand.style.left  = e.clientX + 'px';
+    hand.style.top   = e.clientY + 'px';
+  });
+  function bindHover() {
+    document.querySelectorAll('a,button,.carr-btn,.dot,.btn,.soc-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => { arrow.style.display='none'; hand.style.display='block'; });
+      el.addEventListener('mouseleave', () => { arrow.style.display='block'; hand.style.display='none'; });
+    });
+  }
+  bindHover();
+})();
+</script>
+</body>
+</html>
