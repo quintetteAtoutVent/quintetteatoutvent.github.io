@@ -3,35 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <meta name="theme-color" content="#0f1c20">
+  <meta name="theme-color" content="#2d4f72">
   <meta name="description" content="Archives des concerts du Quintette Atout Vent au Havre.">
   <title>Mémoire Musicale — Quintette Atout Vent</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
     :root {
-      --teal: #2a7f7f; --accent: #5bb8b8; --dark: #0f1c20;
-      --light: #fdfdfd; --white: #ffffff; --gray: #64748b;
-      --gold: #c5a47e;
-      --cubic: cubic-bezier(0.23, 1, 0.32, 1);
+      --teal:   #2d4f72;
+      --teal2:  #1a2d4a;
+      --green:  #4a7a9b;
+      --gray:   #2c3d52;
+      --light:  #eef2f5;
+      --white:  #f5f8fa;
+      --dark:   #162033;
+      --mist:   #d8e2ea;
+      --accent: #8fa8b8;
+      --cubic:  cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Montserrat', sans-serif;
       background: var(--white);
       color: var(--dark);
-      line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ===================== CURSEUR (desktop uniquement) ===================== */
+    /* ===================== CURSEUR ===================== */
     @media (hover: hover) and (pointer: fine) {
       * { cursor: none !important; }
       #cursor-arrow, #cursor-hand {
@@ -49,27 +54,28 @@
       position: fixed; top: 0; width: 100%; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 5%;
-      background: rgba(15, 28, 32, 0.96);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(100, 133, 155, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
     .logo {
       font-family: 'Cormorant Garamond', serif;
-      color: var(--accent); text-decoration: none;
-      letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 600; font-size: 1rem;
+      font-size: 1.3rem; font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: 3px; text-transform: uppercase;
+      line-height: 1.1; text-decoration: none;
     }
     .logo span {
-      display: block; font-size: 0.5rem; color: #fff;
-      opacity: 0.5; letter-spacing: 5px; margin-top: 2px;
+      display: block; font-size: .65rem; letter-spacing: 6px;
+      font-weight: 300; color: rgba(255,255,255,0.58);
     }
-    .nav-links { display: flex; gap: 2rem; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
     .nav-links a {
-      color: white; text-decoration: none; font-size: 0.65rem;
-      letter-spacing: 2px; text-transform: uppercase;
-      opacity: 0.8; transition: 0.3s;
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: .68rem; letter-spacing: 2px; text-transform: uppercase;
+      transition: color .3s;
     }
-    .nav-links a:hover { opacity: 1; color: var(--accent); }
+    .nav-links a:hover { color: #ffffff; }
 
     /* Hamburger */
     .hamburger {
@@ -79,7 +85,7 @@
     }
     .hamburger span {
       display: block; width: 24px; height: 2px;
-      background: var(--accent); border-radius: 2px;
+      background: rgba(255,255,255,0.85); border-radius: 2px;
       transition: transform .35s ease, opacity .25s ease;
     }
     .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -88,16 +94,15 @@
 
     /* Drawer mobile */
     .nav-drawer {
-      display: none;
-      position: fixed; inset: 0; z-index: 150;
-      background: rgba(15, 28, 32, 0.98);
+      display: none; position: fixed; inset: 0; z-index: 150;
+      background: rgba(22, 32, 51, 0.97);
       flex-direction: column; align-items: center; justify-content: center;
       gap: 2.5rem; opacity: 0; pointer-events: none;
       transition: opacity .35s ease;
     }
     .nav-drawer.open { opacity: 1; pointer-events: all; }
     .nav-drawer a {
-      color: rgba(255,255,255,0.8); text-decoration: none;
+      color: rgba(255,255,255,0.85); text-decoration: none;
       font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem; font-weight: 600;
       letter-spacing: 4px; text-transform: uppercase;
@@ -123,30 +128,61 @@
 
     /* ===================== HERO ===================== */
     #hero {
-      height: 30vh; min-height: 220px;
-      padding-top: 60px; /* compense la nav fixe */
+      min-height: 36vh; padding-top: 80px; padding-bottom: 3rem;
       display: flex; align-items: center; justify-content: center;
-      position: relative; overflow: hidden; background-color: #0c1417;
+      position: relative; overflow: hidden;
+      background: #7d9fb5;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 65% 65% at 70% 40%, rgba(255,255,255,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 45% at 20% 75%, rgba(255,255,255,0.08) 0%, transparent 50%),
+        linear-gradient(160deg, #9abcce 0%, #7a9fb6 45%, #5f8499 100%);
     }
     canvas#particles-js { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-    .hero-content { position: relative; z-index: 2; color: white; text-align: center; }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 1.5rem; }
+    .hero-orn {
+      width: 80px; height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+      margin: 0 auto 1.5rem;
+    }
+    .hero-tag {
+      font-size: .82rem; letter-spacing: 5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.72);
+      margin-bottom: 1rem;
+    }
     #hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 5vw, 3rem);
-      letter-spacing: 5px; text-transform: uppercase; font-weight: 300;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 600; letter-spacing: 6px;
+      text-transform: uppercase; color: #1a2d4a;
+      line-height: 1.1;
     }
-    #hero p {
-      text-transform: uppercase; letter-spacing: 6px;
-      font-size: 0.6rem; margin-bottom: 0.5rem;
-      color: var(--accent); font-weight: 600;
+    #hero h1 em {
+      font-style: italic; font-weight: 300;
+      color: #2d4f72;
+    }
+
+    @media (max-width: 480px) {
+      .hero-tag { font-size: .6rem; letter-spacing: 3px; }
+      #hero h1 { font-size: clamp(1.6rem, 8vw, 2.5rem); }
     }
 
     /* ===================== GRID & CARDS ===================== */
-    .si { max-width: 1200px; margin: 0 auto; padding: 4rem 5%; }
+    .si { max-width: 1200px; margin: 0 auto; padding: 5rem 5%; }
+
+    .s-tag { font-size: .65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--green); margin-bottom: .5rem; }
+    .s-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600; margin-bottom: .8rem; color: var(--teal2);
+    }
+    .s-line { width: 45px; height: 2px; background: var(--teal); margin-bottom: 3rem; }
 
     .concerts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
       gap: 4rem;
     }
 
@@ -156,38 +192,61 @@
     .concert-card {
       background: var(--white); position: relative;
       display: flex; flex-direction: column; cursor: pointer;
+      border: 1px solid rgba(45,79,114,0.08);
+      transition: box-shadow .4s var(--cubic), border-color .4s;
+    }
+    .concert-card:hover {
+      box-shadow: 0 20px 50px rgba(45,79,114,0.12);
+      border-color: rgba(45,79,114,0.18);
     }
     .img-box {
-      position: relative; height: 350px;
+      position: relative; height: 360px;
       overflow: hidden; background: var(--dark);
     }
     .concert-card-img {
       width: 100%; height: 100%; object-fit: cover;
-      transition: transform 1.2s var(--cubic);
+      transition: transform 1.2s var(--cubic), opacity .4s;
       pointer-events: none; display: block;
     }
-    .concert-card:hover .concert-card-img { transform: scale(1.05); opacity: 0.8; }
+    .concert-card:hover .concert-card-img { transform: scale(1.05); opacity: 0.85; }
 
-    .concert-card-body { padding: 2rem 0; }
-    .date { font-size: 0.7rem; color: var(--teal); letter-spacing: 3px; font-weight: 600; margin-bottom: 0.5rem; display: block; }
+    /* Overlay gradient on image bottom */
+    .img-box::before {
+      content: "";
+      position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+      background: linear-gradient(to top, rgba(22,32,51,0.35), transparent);
+      z-index: 1; pointer-events: none;
+    }
+
+    .concert-card-body { padding: 1.8rem 2rem 2rem; }
+    .date {
+      font-size: .68rem; color: var(--green);
+      letter-spacing: 3px; font-weight: 600;
+      margin-bottom: .5rem; display: block;
+      text-transform: uppercase;
+    }
     .title {
-      font-family: 'Cormorant Garamond', serif; font-size: 2rem;
-      color: var(--dark); font-weight: 500; line-height: 1.1; position: relative;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.9rem;
+      color: var(--teal2); font-weight: 600; line-height: 1.1;
+      position: relative; display: inline-block;
     }
     .title::after {
       content: ""; position: absolute; left: 0; bottom: -4px;
-      width: 0; height: 1.5px; background-color: var(--gold);
+      width: 0; height: 2px; background: var(--teal);
       transition: width 0.6s var(--cubic);
     }
     .concert-card:hover .title::after { width: 100%; }
-    .desc { font-size: 0.9rem; color: var(--gray); font-weight: 300; line-height: 1.7; margin-top: 1rem; }
+    .desc {
+      font-size: .85rem; color: var(--gray);
+      font-weight: 300; line-height: 1.8; margin-top: .9rem;
+    }
 
     /* Indication tactile sur mobile */
     @media (hover: none), (pointer: coarse) {
       .img-box::after {
         content: "Appuyer pour agrandir";
-        position: absolute; bottom: 0; left: 0; right: 0;
-        padding: .6rem; background: rgba(15,28,32,.55);
+        position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+        padding: .6rem; background: rgba(22,32,51,.55);
         color: rgba(255,255,255,.7); font-size: .6rem;
         letter-spacing: 2px; text-transform: uppercase;
         text-align: center;
@@ -196,19 +255,20 @@
 
     @media (max-width: 600px) {
       .img-box { height: 260px; }
-      .title { font-size: 1.6rem; }
-      .desc { font-size: .82rem; }
+      .title { font-size: 1.5rem; }
+      .desc { font-size: .8rem; }
       .concerts-grid { gap: 2.5rem; }
       .si { padding: 3rem 5%; }
+      .concert-card-body { padding: 1.3rem 1.2rem 1.5rem; }
     }
 
     /* ===================== LIGHTBOX ===================== */
     #lightbox {
       position: fixed; inset: 0;
-      background: rgba(8, 14, 16, 0.98);
+      background: rgba(22, 32, 51, 0.97);
       z-index: 2000; display: none;
       align-items: center; justify-content: center;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
       touch-action: none;
     }
     #lightbox.active { display: flex; }
@@ -217,64 +277,70 @@
       transform: scale(0.95);
       transition: transform 0.4s var(--cubic);
       pointer-events: none; display: block;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5);
     }
     #lightbox.loaded img { transform: scale(1); }
 
-    /* Bouton fermer lightbox */
     .lb-close {
       position: absolute; top: 1.2rem; right: 1.5rem;
-      background: none; border: 1px solid rgba(91,184,184,.4);
+      background: none; border: 1px solid rgba(143,168,184,.4);
       color: var(--accent); font-size: 1.4rem; line-height: 1;
-      width: 40px; height: 40px;
+      width: 42px; height: 42px;
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: background .2s;
+      cursor: pointer; transition: background .2s, border-color .2s;
       z-index: 10;
     }
-    .lb-close:hover { background: rgba(91,184,184,.15); }
+    .lb-close:hover { background: rgba(143,168,184,.15); border-color: var(--accent); }
 
     /* ===================== BTN & FOOTER ===================== */
-    .btn-wrap { text-align: center; margin-top: 3rem; }
+    .btn-wrap { text-align: center; margin-top: 4rem; }
     .btn-back {
       display: inline-block; padding: 1rem 3rem;
-      background: var(--dark); color: white;
-      text-decoration: none; font-size: 0.7rem;
+      background: var(--teal); color: #ffffff;
+      text-decoration: none; font-size: .7rem;
       letter-spacing: 3px; text-transform: uppercase;
-      transition: 0.4s; border: 1px solid var(--dark);
+      transition: background .3s, color .3s;
+      border: 1px solid var(--teal);
+      font-family: 'Montserrat', sans-serif;
     }
-    .btn-back:hover { background: transparent; color: var(--dark); }
+    .btn-back:hover { background: var(--teal2); border-color: var(--teal2); }
 
     footer {
-      background: #0c1417; color: rgba(255,255,255,0.3);
-      text-align: center; padding: 3rem 2rem;
-      font-size: 0.65rem; letter-spacing: 1px;
+      background: var(--dark);
+      color: rgba(232,237,242,0.4);
+      text-align: center; padding: 2.5rem 2rem;
+      font-size: .7rem; letter-spacing: 1px;
+      border-top: 1px solid rgba(143,168,184,0.1);
     }
     footer span { color: var(--accent); }
+    .footer-social { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer-social a { color: rgba(232,237,242,0.4); text-decoration: none; font-size: .7rem; letter-spacing: 1px; transition: color .3s; }
+    .footer-social a:hover { color: var(--accent); }
   </style>
 </head>
 <body>
 
 <!-- CURSEURS DESKTOP -->
 <svg id="cursor-arrow" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M2 2L2 20L7.5 14.5L11 21L13.5 20L10 13.5L17 13.5L2 2Z" fill="#5bb8b8" stroke="#0f1c20" stroke-width="1"/>
+  <path d="M2 2L2 20L7.5 14.5L11 21L13.5 20L10 13.5L17 13.5L2 2Z" fill="#2d4f72" stroke="#1a2d4a" stroke-width="1"/>
 </svg>
 <svg id="cursor-hand" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8 12V4a2 2 0 0 1 4 0v8" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M12 12V9a2 2 0 0 1 4 0v3" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M16 12v-1a2 2 0 0 1 4 0v5c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M6 13V7a2 2 0 0 1 2-2" stroke="#5bb8b8" stroke-width="1.5" stroke-linecap="round"/>
-  <path fill="#5bb8b8" fill-opacity="0.15" d="M8 12V4a2 2 0 0 1 4 0v8h4V9a2 2 0 0 1 4 0v8c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0v3H8V12z"/>
+  <path d="M8 12V4a2 2 0 0 1 4 0v8" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M12 12V9a2 2 0 0 1 4 0v3" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M16 12v-1a2 2 0 0 1 4 0v5c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M6 13V7a2 2 0 0 1 2-2" stroke="#2d4f72" stroke-width="1.5" stroke-linecap="round"/>
+  <path fill="#2d4f72" fill-opacity="0.15" d="M8 12V4a2 2 0 0 1 4 0v8h4V9a2 2 0 0 1 4 0v8c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0v3H8V12z"/>
 </svg>
 
 <!-- NAV -->
 <nav role="navigation">
   <a href="index.html" class="logo">Atout Vent<span>Quintette</span></a>
-
-  <div class="nav-links">
-    <a href="index.html">Accueil</a>
-    <a href="index.html#agenda">Agenda</a>
-    <a href="index.html#contact">Nous Contacter</a>
-  </div>
-
+  <ul class="nav-links">
+    <li><a href="index.html#about">L'ensemble</a></li>
+    <li><a href="index.html#membres">Les Musiciens</a></li>
+    <li><a href="index.html#agenda">L'Agenda</a></li>
+    <li><a href="index.html#contact">Nous contacter</a></li>
+  </ul>
   <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
@@ -283,8 +349,10 @@
 <!-- Drawer mobile -->
 <nav class="nav-drawer" id="nav-drawer" aria-hidden="true">
   <a href="index.html" class="drawer-link">Accueil</a>
-  <a href="index.html#agenda" class="drawer-link">Agenda</a>
-  <a href="index.html#contact" class="drawer-link">Nous Contacter</a>
+  <a href="index.html#about" class="drawer-link">L'ensemble</a>
+  <a href="index.html#membres" class="drawer-link">Les Musiciens</a>
+  <a href="index.html#agenda" class="drawer-link">L'Agenda</a>
+  <a href="index.html#contact" class="drawer-link">Nous contacter</a>
   <div class="nav-drawer-sub">
     <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
     <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer">👤 Facebook</a>
@@ -293,15 +361,24 @@
 
 <!-- HERO -->
 <header id="hero">
+  <div class="hero-overlay"></div>
   <canvas id="particles-js"></canvas>
   <div class="hero-content">
-    <p>Le Souffle de l'Histoire</p>
-    <h1>Concerts <span style="font-style:italic;font-weight:300;">Passés</span></h1>
+    <div class="hero-orn"></div>
+    <p class="hero-tag">Le Souffle de l'Histoire</p>
+    <h1>Concerts <em>Passés</em></h1>
   </div>
 </header>
 
 <!-- CONCERTS -->
 <main class="si">
+
+  <div class="reveal" style="margin-bottom: 3rem;">
+    <p class="s-tag">Archives</p>
+    <h2 class="s-title">Nos précédentes représentations</h2>
+    <div class="s-line"></div>
+  </div>
+
   <div class="concerts-grid">
 
     <article class="concert-card reveal" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/concert%20pierre%20et%20le%20loup.jpg')">
@@ -310,7 +387,7 @@
              class="concert-card-img" alt="Affiche du concert Pierre et le Loup" loading="lazy">
       </div>
       <div class="concert-card-body">
-        <span class="date">SAISON 2024 — 2025</span>
+        <span class="date">Saison 2024 — 2025</span>
         <h2 class="title">Pierre et le Loup</h2>
         <p class="desc">Conte musical de Prokofiev adapté pour quintette. Une narration immersive au Havre.</p>
       </div>
@@ -322,21 +399,21 @@
              class="concert-card-img" alt="Affiche du concert Casse-Noisette" loading="lazy">
       </div>
       <div class="concert-card-body">
-        <span class="date">DÉCEMBRE 2025</span>
+        <span class="date">Décembre 2025</span>
         <h2 class="title">Casse-Noisette</h2>
         <p class="desc">La magie de Tchaïkovski revisitée pour les fêtes de fin d'année.</p>
       </div>
     </article>
-  
+
     <article class="concert-card reveal" onclick="openLightbox('https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/final%20%284%29%20.png')">
       <div class="img-box">
         <img src="https://raw.githubusercontent.com/atoutvent76-ux/quintette-atout-vent/main/final%20%284%29%20.png"
-             class="concert-card-img" alt="Affiche du concert De Sandouville" loading="lazy">
+             class="concert-card-img" alt="Affiche du concert de Sandouville" loading="lazy">
       </div>
       <div class="concert-card-body">
-        <span class="date">29 MARS 2026</span>
-        <h2 class="title">Eglise de sandouville</h2>
-        <p class="desc">Concert a l'eglise de sandouville grâce a l'association la hêtraie.</p>
+        <span class="date">29 Mars 2026</span>
+        <h2 class="title">Église de Sandouville</h2>
+        <p class="desc">Concert à l'église de Sandouville grâce à l'association La Hêtraie.</p>
       </div>
     </article>
 
@@ -354,7 +431,13 @@
 </div>
 
 <footer>
-  © 2026 <span>Quintette Atout Vent</span> · Le Havre
+  <div class="footer-social">
+    <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
+    <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer">👤 Facebook</a>
+    <a href="mailto:atoutvent76@gmail.com">✉️ atoutvent76@gmail.com</a>
+  </div>
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(143,168,184,0.2),transparent);margin-bottom:1.5rem;"></div>
+  © 2026 <span>Quintette Atout Vent</span> · Le Havre, Normandie · <span>Battaglia Laurent</span>
 </footer>
 
 <!-- SCRIPTS -->
@@ -385,7 +468,9 @@
     drawer.classList.contains('open') ? closeDrawer() : openDrawer()
   );
   document.querySelectorAll('.drawer-link').forEach(l => l.addEventListener('click', closeDrawer));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeLightbox(); } });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeDrawer(); closeLightbox(); }
+  });
 
   /* ---- PARTICLES ---- */
   const canvas = document.getElementById('particles-js');
@@ -397,9 +482,9 @@
     reset() {
       this.x = Math.random() * w;
       this.y = Math.random() * h;
-      this.vx = (Math.random() - 0.5) * 0.3;
-      this.vy = (Math.random() - 0.5) * 0.3;
-      this.size = Math.random() * 1;
+      this.vx = (Math.random() - 0.5) * 0.25;
+      this.vy = (Math.random() - 0.5) * 0.25;
+      this.size = Math.random() * 1.2;
     }
     update() {
       this.x += this.vx; this.y += this.vy;
@@ -408,7 +493,7 @@
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(91,184,184,0.4)';
+      ctx.fillStyle = 'rgba(255,255,255,0.3)';
       ctx.fill();
     }
   }
@@ -416,7 +501,7 @@
   const initCanvas = () => {
     w = canvas.width  = window.innerWidth;
     h = canvas.height = document.getElementById('hero').offsetHeight;
-    particles = Array.from({ length: 60 }, () => new Particle());
+    particles = Array.from({ length: 55 }, () => new Particle());
   };
   const render = () => {
     ctx.clearRect(0, 0, w, h);
@@ -430,7 +515,7 @@
   /* ---- REVEAL ON SCROLL ---- */
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
   /* ---- LIGHTBOX ---- */
@@ -440,7 +525,6 @@
   window.openLightbox = function (url) {
     lbImg.src = url;
     lb.style.display = 'flex';
-    // Attend le chargement de l'image avant l'animation
     lbImg.onload = () => lb.classList.add('loaded');
     lb.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -455,40 +539,30 @@
     document.body.style.overflow = '';
   };
 
-  // Clic en dehors de l'image pour fermer
-  lb.addEventListener('click', e => {
-    if (e.target === lb) closeLightbox();
-  });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 
-  // Swipe vertical vers le bas pour fermer sur mobile
   let touchStartY = 0;
   lb.addEventListener('touchstart', e => { touchStartY = e.touches[0].clientY; }, { passive: true });
   lb.addEventListener('touchend', e => {
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    if (dy > 60) closeLightbox(); // swipe down
+    if (e.changedTouches[0].clientY - touchStartY > 60) closeLightbox();
   }, { passive: true });
 
 })();
 </script>
 
-<!-- CURSEUR DESKTOP uniquement -->
+<!-- CURSEUR DESKTOP -->
 <script>
 (function () {
   if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-
   const arrow = document.getElementById('cursor-arrow');
   const hand  = document.getElementById('cursor-hand');
-
   window.addEventListener('mousemove', e => {
-    arrow.style.left = e.clientX + 'px';
-    arrow.style.top  = e.clientY + 'px';
-    hand.style.left  = e.clientX + 'px';
-    hand.style.top   = e.clientY + 'px';
+    arrow.style.left = e.clientX + 'px'; arrow.style.top = e.clientY + 'px';
+    hand.style.left  = e.clientX + 'px'; hand.style.top  = e.clientY + 'px';
   });
-
   document.querySelectorAll('a, button, .concert-card, .btn-back').forEach(el => {
-    el.addEventListener('mouseenter', () => { arrow.style.display = 'none'; hand.style.display = 'block'; });
-    el.addEventListener('mouseleave', () => { arrow.style.display = 'block'; hand.style.display = 'none'; });
+    el.addEventListener('mouseenter', () => { arrow.style.display = 'none';  hand.style.display = 'block'; });
+    el.addEventListener('mouseleave', () => { arrow.style.display = 'block'; hand.style.display = 'none';  });
   });
 })();
 </script>
