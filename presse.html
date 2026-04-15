@@ -17,14 +17,14 @@
         }
         body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-        /* CURSEUR DYNAMIQUE (Identique à Archives) */
+        /* CURSEUR DYNAMIQUE */
         @media (hover:hover) and (pointer:fine){
             *{cursor:none !important;}
             #cursor-arrow,#cursor-hand{position:fixed;pointer-events:none;z-index:99999;width:24px;height:28px;top:0;left:0;will-change:left,top;}
             #cursor-hand{display:none;}
         }
 
-        /* NAVIGATION PREMIUM */
+        /* NAVIGATION */
         nav{
             position:fixed;top:0;width:100%;z-index:1000;
             display:flex;justify-content:space-between;align-items:center;
@@ -39,7 +39,7 @@
         .nav-links a{color:rgba(255, 255, 255, 0.7);text-decoration:none;font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;transition:color 0.3s;}
         .nav-links a:hover{color:#fff;}
 
-        /* HERO AVEC PARTICULES FONCTIONNELLES */
+        /* HERO AVEC PARTICULES */
         #hero{
             min-height:50vh;padding-top:80px;
             display:flex;align-items:center;justify-content:center;
@@ -60,14 +60,15 @@
             background:#fff;position:relative;cursor:pointer;
             border:1px solid rgba(45, 79, 114, 0.1);overflow:hidden;
             transition:all 0.5s var(--cubic);
+            display: flex;
+            flex-direction: column;
         }
         .press-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(15, 28, 46, 0.15);border-color:var(--gold);}
 
         .img-box{height:400px;background:var(--dark);overflow:hidden;}
         
-        /* EFFET GRISÉ ET RÉVÉLATION AU SURVOL */
         .press-img{
-            width:100%;height:100%;object-fit:contain;
+            width:100%;height:100%;object-fit:cover;
             filter: grayscale(100%);
             transition: filter 0.8s var(--cubic), transform 1.2s var(--cubic);
         }
@@ -76,11 +77,11 @@
             transform: scale(1.05);
         }
 
-        .press-body{padding:2rem;}
+        .press-body{padding:2rem; flex-grow: 1;}
         .press-date{font-size:.6rem;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:.5rem;display:block;}
         .press-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--teal2);font-weight:600;line-height:1.1;}
 
-        /* LIGHTBOX PREMIUM */
+        /* LIGHTBOX */
         #lightbox{
             position:fixed;inset:0;background:rgba(8, 16, 28, 0.98);
             z-index:2000;display:none;align-items:center;justify-content:center;
@@ -116,25 +117,24 @@
     </header>
 
     <section class="press-section">
-        
+        <div class="press-grid">
             <article class="press-card" onclick="openLB('IMG_20260415_0003.jpg')">
                 <div class="img-box">
-                    <img src="IMG_20260415_0003.jpg" class="press-img" alt="Nouvel Article">
+                    <img src="IMG_20260415_0003.jpg" class="press-img" alt="Le Havre Infos">
                 </div>
                 <div class="press-body">
                     <span class="press-date">Avril 2026</span>
-                    <h3 class="press-title">Article de Le Havre infos</h3>
+                    <h3 class="press-title">Article de Le Havre Infos</h3>
                 </div>
             </article>
-        </div>
 
-        <article class="press-card" onclick="openLB('IMG_20260415_0003.jpg')">
+            <article class="press-card" onclick="openLB('CC 2026_04_03 (2)_page-0001.jpg')">
                 <div class="img-box">
-                    <img src="CC 2026_04_03 (2)_page-0001.jpg" class="press-img" alt="Nouvel Article">
+                    <img src="CC 2026_04_03 (2)_page-0001.jpg" class="press-img" alt="Courrier Cauchois">
                 </div>
                 <div class="press-body">
                     <span class="press-date">Mars 2026</span>
-                    <h3 class="press-title">Article du Courrier Cauchoix</h3>
+                    <h3 class="press-title">Article du Courrier Cauchois</h3>
                 </div>
             </article>
         </div>
@@ -149,7 +149,6 @@
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Initialisation des particules (Même configuration que Archives)
         particlesJS("particles-js", {
             "particles": {
                 "number": { "value": 50 },
@@ -161,14 +160,12 @@
             }
         });
 
-        // Fonction Lightbox
         function openLB(src) {
             const lb = document.getElementById('lightbox');
             document.getElementById('lb-img').src = src;
             lb.classList.add('active');
         }
 
-        // Gestion du curseur dynamique
         const arrow = document.getElementById('cursor-arrow');
         const hand = document.getElementById('cursor-hand');
         window.addEventListener('mousemove', e => {
