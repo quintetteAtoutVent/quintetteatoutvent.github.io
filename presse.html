@@ -3,638 +3,172 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1a2d4a">
-  <meta name="description" content="Revue de presse du Quintette Atout Vent — articles et couvertures médias.">
-  <title>Revue de Presse — Quintette Atout Vent</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>La Gazette Musicale — Quintette Atout Vent</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     :root{
-      --teal:#2d4f72;--teal2:#1a2d4a;--green:#4a7a9b;--gray:#2c3d52;
-      --light:#eef2f5;--white:#f8fafb;--dark:#0f1c2e;--mist:#d8e2ea;
-      --accent:#8fa8b8;--gold:#c9a96e;--cubic:cubic-bezier(0.23,1,0.32,1);
-    }
-    html{scroll-behavior:smooth;}
-    body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-
-    @media(hover:hover) and (pointer:fine){
-      *{cursor:none !important;}
-      #cursor-arrow,#cursor-hand{position:fixed;pointer-events:none;z-index:99999;width:24px;height:28px;top:0;left:0;will-change:left,top;}
-      #cursor-hand{display:none;}
-    }
-    @media(hover:none),(pointer:coarse){#cursor-arrow,#cursor-hand{display:none !important;}}
-
-    /* ── NAV ── */
-    nav{
-      position:fixed;top:0;width:100%;z-index:1000;
-      display:flex;justify-content:space-between;align-items:center;
-      padding:1rem 5%;
-      background:rgba(15,28,46,0.88);
-      backdrop-filter:blur(18px) saturate(1.4);
-      border-bottom:1px solid rgba(255,255,255,0.08);
-      transition:background .4s;
-    }
-    nav.scrolled{background:rgba(15,28,46,0.97);}
-    .logo{
-      display:flex;align-items:center;gap:.6rem;
-      font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;
-      color:rgba(255,255,255,0.92);letter-spacing:3px;text-transform:uppercase;
-      line-height:1.1;text-decoration:none;
-    }
-    .logo-img{height:44px;width:44px;object-fit:contain;flex-shrink:0;}
-    .logo-text{display:flex;flex-direction:column;}
-    .logo-text span{display:block;font-size:.62rem;letter-spacing:6px;font-weight:300;color:var(--gold);opacity:.8;}
-    .nav-links{display:flex;gap:1.8rem;list-style:none;}
-    .nav-links a{
-      color:rgba(255,255,255,0.7);text-decoration:none;
-      font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;
-      transition:color .3s;position:relative;padding-bottom:3px;
-    }
-    .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--cubic);}
-    .nav-links a:hover{color:#fff;}
-    .nav-links a:hover::after{width:100%;}
-    .nav-links a.active{color:#fff;}
-    .nav-links a.active::after{width:100%;}
-
-    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem;z-index:200;}
-    .hamburger span{display:block;width:24px;height:2px;background:rgba(255,255,255,0.85);border-radius:2px;transition:transform .35s ease,opacity .25s ease;}
-    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
-    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-
-    .nav-drawer{
-      display:none;position:fixed;inset:0;z-index:150;
-      background:rgba(10,18,35,0.98);
-      flex-direction:column;align-items:center;justify-content:center;
-      gap:2.5rem;opacity:0;pointer-events:none;transition:opacity .35s ease;
-    }
-    .nav-drawer.open{opacity:1;pointer-events:all;}
-    .nav-drawer a{color:rgba(255,255,255,0.85);text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;transition:color .25s;}
-    .nav-drawer a:hover{color:var(--gold);}
-    .nav-drawer-sub{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:center;margin-top:1rem;}
-    .nav-drawer-sub a{font-family:'Montserrat',sans-serif;font-size:.65rem;letter-spacing:2px;color:rgba(255,255,255,0.35);font-weight:400;}
-
-    @media(max-width:768px){
-      .nav-links{display:none;}
-      .hamburger{display:flex;}
-      .nav-drawer{display:flex;}
+      --teal2:#1a2d4a;
+      --gold:#c9a96e;
+      --paper:#e8e4d5;
+      --ink:#2b2b2b;
     }
 
-    /* ── HERO ── */
-    #hero{
-      min-height:52vh;padding-top:80px;padding-bottom:3rem;
-      display:flex;align-items:center;justify-content:center;
-      position:relative;overflow:hidden;
-    }
-    .hero-bg{position:absolute;inset:0;background:linear-gradient(145deg,#0f1c2e 0%,#162844 40%,#1e3a5a 75%,#243f65 100%);}
-    .hero-wave{position:absolute;border-radius:50%;pointer-events:none;opacity:0;animation:waveIn 2s ease forwards,wavePulse 8s ease-in-out infinite;}
-    .hero-wave-1{width:600px;height:600px;background:radial-gradient(circle,rgba(201,169,110,0.12) 0%,transparent 65%);top:-200px;right:-100px;animation-delay:0s,0s;}
-    .hero-wave-2{width:400px;height:400px;background:radial-gradient(circle,rgba(74,122,155,0.18) 0%,transparent 65%);bottom:-150px;left:-80px;animation-delay:.4s,3s;}
-    .hero-wave-3{width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,255,0.07) 0%,transparent 65%);top:35%;left:38%;animation-delay:.7s,6s;}
-    @keyframes waveIn{from{opacity:0;transform:scale(.8);}to{opacity:1;transform:scale(1);}}
-    @keyframes wavePulse{0%,100%{transform:scale(1) translate(0,0);}33%{transform:scale(1.06) translate(12px,-10px);}66%{transform:scale(0.96) translate(-8px,8px);}}
-    .hero-rule{position:absolute;top:42%;left:0;right:0;height:1px;pointer-events:none;background:linear-gradient(90deg,transparent 0%,rgba(201,169,110,0.15) 30%,rgba(201,169,110,0.25) 50%,rgba(201,169,110,0.15) 70%,transparent 100%);animation:ruleSlide 1.4s var(--cubic) forwards;transform-origin:center;}
-    @keyframes ruleSlide{from{transform:scaleX(0);opacity:0;}to{transform:scaleX(1);opacity:1;}}
-    canvas#particles-js{position:absolute;inset:0;z-index:2;pointer-events:none;}
-    .hero-content{position:relative;z-index:3;text-align:center;padding:0 2rem;animation:heroFade 1.2s var(--cubic) .2s both;}
-    @keyframes heroFade{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-    .hero-orn{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:1.5rem;}
-    .hero-orn-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));}
-    .hero-orn-line:last-child{transform:scaleX(-1);}
-    .hero-orn-diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
-    .hero-tag{font-size:.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:.85;}
-    #hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6.5vw,4.5rem);font-weight:300;letter-spacing:8px;text-transform:uppercase;color:rgba(255,255,255,0.92);line-height:1.05;}
-    #hero h1 strong{font-weight:600;color:#fff;display:block;}
-    #hero h1 em{font-style:italic;font-weight:300;color:var(--gold);font-size:.75em;letter-spacing:10px;display:block;margin-top:.4rem;}
-    .hero-subtitle{margin-top:1.5rem;font-size:.7rem;letter-spacing:3px;color:rgba(255,255,255,0.35);text-transform:uppercase;}
-
-    /* ── SECTION ── */
-    .si{max-width:1200px;margin:0 auto;padding:5rem 5%;}
-    .s-header{margin-bottom:4rem;}
-    .s-tag{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;display:block;}
-    .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:600;color:var(--teal2);margin-bottom:1rem;}
-    .s-line{display:flex;align-items:center;gap:.8rem;}
-    .s-line-bar{width:40px;height:1px;background:var(--gold);}
-    .s-line-dot{width:4px;height:4px;background:var(--gold);transform:rotate(45deg);}
-    .s-line-bar2{width:20px;height:1px;background:var(--mist);}
-
-    /* ── GRILLE PRESSE ── */
-    .press-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:3rem;}
-
-    .reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--cubic),transform .9s var(--cubic);}
-    .reveal.active{opacity:1;transform:translateY(0);}
-    .reveal:nth-child(2){transition-delay:.15s;}
-    .reveal:nth-child(3){transition-delay:.3s;}
-
-    /* ── CARTE PRESSE ── */
-    .press-card{
-      background:#fff;position:relative;display:flex;flex-direction:column;
-      cursor:pointer;border:1px solid rgba(45,79,114,0.1);overflow:hidden;
-      transition:box-shadow .5s var(--cubic),border-color .4s,transform .5s var(--cubic);
-    }
-    .press-card::before{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(135deg,rgba(201,169,110,0.05) 0%,transparent 60%);
-      opacity:0;transition:opacity .4s;z-index:0;pointer-events:none;
-    }
-    .press-card:hover{box-shadow:0 30px 70px rgba(26,45,74,0.16);border-color:rgba(201,169,110,0.3);transform:translateY(-4px);}
-    .press-card:hover::before{opacity:1;}
-
-    .press-card .card-num{
-      position:absolute;top:1.2rem;left:1.2rem;z-index:10;
-      width:36px;height:36px;background:var(--dark);
-      display:flex;align-items:center;justify-content:center;
-      font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;
-      color:var(--gold);border:1px solid rgba(201,169,110,0.3);
+    body {
+      background-color: #222;
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', serif;
+      padding-top: 80px;
     }
 
-    /* ── IMAGE BOX ── */
-    .img-box{
-      position:relative;overflow:hidden;background:var(--dark);
-      height:480px;display:flex;align-items:center;justify-content:center;
+    /* ── NAV PRÉSERVÉE ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 5%; background: var(--teal2); border-bottom: 2px solid var(--gold);
     }
-    .press-card-img{
-      width:100%;height:100%;object-fit:contain;object-position:center;
-      display:block;opacity:0;
-      transition:opacity .6s,transform 1.2s var(--cubic),filter .5s;
-    }
-    .press-card-img.visible{opacity:1;}
-    .press-card:hover .press-card-img{transform:scale(1.03);filter:brightness(1.04);}
+    .logo { text-decoration: none; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: #fff; text-decoration: none; font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase; }
 
-    /* fond neutre clair pour les coupures de presse */
-    .img-box.press-bg{background:#f0ece4;}
+    /* ── LA FEUILLE DE JOURNAL ── */
+    .journal-page {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: var(--paper);
+      background-image: url("https://www.transparenttextures.com/patterns/old-paper.png");
+      padding: 40px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      border: 1px solid #c0b9a0;
+      position: relative;
+    }
 
-    .img-overlay{
-      position:absolute;inset:0;
-      background:linear-gradient(to bottom,transparent 55%,rgba(15,28,46,0.4) 100%);
-      z-index:2;pointer-events:none;transition:opacity .4s;
+    /* En-tête Vintage */
+    .gazette-header {
+      text-align: center;
+      border-bottom: 5px double var(--ink);
+      margin-bottom: 30px;
+      padding-bottom: 15px;
     }
-    .press-card:hover .img-overlay{opacity:.65;}
+    .gazette-meta {
+      display: flex; justify-content: space-between;
+      border-bottom: 1px solid var(--ink);
+      text-transform: uppercase; font-weight: 600; font-size: 0.8rem;
+      padding: 5px 0; margin-bottom: 10px;
+    }
+    .gazette-title {
+      font-size: 5rem; font-weight: 700; color: var(--teal2);
+      text-transform: uppercase; letter-spacing: -2px; line-height: 0.8;
+    }
 
-    .img-spinner{
-      position:absolute;top:50%;left:50%;width:30px;height:30px;
-      margin:-15px 0 0 -15px;
-      border:1.5px solid rgba(201,169,110,0.2);border-top-color:var(--gold);
-      border-radius:50%;animation:spin .9s linear infinite;z-index:5;
+    /* ── ARTICLES ── */
+    .article {
+      margin-bottom: 40px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      padding-bottom: 40px;
     }
-    .img-spinner.hidden{display:none;}
-    @keyframes spin{to{transform:rotate(360deg);}}
+    .article:last-child { border-bottom: none; }
 
-    .img-zoom-hint{
-      position:absolute;bottom:1rem;right:1rem;z-index:3;
-      width:34px;height:34px;background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,255,255,0.25);
-      display:flex;align-items:center;justify-content:center;
-      opacity:0;transform:scale(.8);
-      transition:opacity .4s,transform .4s var(--cubic);
-      backdrop-filter:blur(6px);
+    .headline {
+      font-size: 2.8rem; font-weight: 700; color: var(--teal2);
+      line-height: 1.1; margin-bottom: 20px; text-align: center;
     }
-    .img-zoom-hint svg{width:14px;height:14px;stroke:#fff;fill:none;}
-    .press-card:hover .img-zoom-hint{opacity:1;transform:scale(1);}
-    @media(hover:none),(pointer:coarse){.img-zoom-hint{display:none;}}
 
-    /* ── BODY CARTE ── */
-    .press-card-body{
-      padding:1.8rem 2rem 2.2rem;position:relative;z-index:1;
-      border-top:1px solid rgba(45,79,114,0.08);flex:1;
+    .columns {
+      column-count: 2; column-gap: 30px; column-rule: 1px solid rgba(0,0,0,0.1);
+      text-align: justify; font-size: 1.2rem; line-height: 1.4;
     }
-    .press-meta{
-      display:flex;align-items:center;gap:1rem;margin-bottom:.8rem;flex-wrap:wrap;
-    }
-    .press-source{
-      font-size:.58rem;letter-spacing:3px;text-transform:uppercase;
-      color:#fff;background:var(--teal2);padding:.25rem .7rem;
-      font-weight:600;
-    }
-    .press-date{
-      font-size:.62rem;color:var(--gold);letter-spacing:3px;font-weight:600;
-      text-transform:uppercase;display:flex;align-items:center;gap:.5rem;
-    }
-    .press-date::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);}
-    .press-title{
-      font-family:'Cormorant Garamond',serif;font-size:1.85rem;
-      color:var(--teal2);font-weight:600;line-height:1.1;
-      position:relative;display:inline-block;
-    }
-    .press-title::after{
-      content:'';position:absolute;left:0;bottom:-5px;
-      width:0;height:2px;
-      background:linear-gradient(90deg,var(--gold),rgba(201,169,110,0.3));
-      transition:width .7s var(--cubic);
-    }
-    .press-card:hover .press-title::after{width:100%;}
-    .press-desc{font-size:.82rem;color:var(--gray);font-weight:300;line-height:1.85;margin-top:1rem;}
-    .card-cta{
-      display:inline-flex;align-items:center;gap:.4rem;margin-top:1.2rem;
-      font-size:.6rem;letter-spacing:3px;text-transform:uppercase;
-      color:var(--teal);font-weight:600;transition:gap .3s,color .3s;
-      cursor:pointer;background:none;border:none;font-family:'Montserrat',sans-serif;
-    }
-    .card-cta svg{width:14px;transition:transform .3s;}
-    .press-card:hover .card-cta{gap:.7rem;color:var(--teal2);}
-    .press-card:hover .card-cta svg{transform:translateX(4px);}
 
-    /* ── BOUTON RETOUR ── */
-    .btn-wrap{text-align:center;margin-top:5rem;}
-    .btn-back{
-      display:inline-flex;align-items:center;gap:.8rem;padding:1.1rem 3.2rem;
-      background:transparent;color:var(--teal2);text-decoration:none;
-      font-size:.65rem;letter-spacing:3.5px;text-transform:uppercase;
-      transition:background .35s,color .35s,border-color .35s;
-      border:1px solid rgba(45,79,114,0.35);font-family:'Montserrat',sans-serif;
-      font-weight:500;position:relative;overflow:hidden;
+    /* Lettrine style ancien */
+    .columns::first-letter {
+      float: left; font-size: 4.5rem; line-height: 0.8;
+      padding-right: 12px; font-weight: 700; color: var(--gold);
     }
-    .btn-back::before{content:'';position:absolute;inset:0;background:var(--teal2);transform:translateX(-100%);transition:transform .45s var(--cubic);z-index:0;}
-    .btn-back:hover::before{transform:translateX(0);}
-    .btn-back:hover{color:#fff;border-color:var(--teal2);}
-    .btn-back span{position:relative;z-index:1;}
 
-    /* ── LIGHTBOX ── */
-    #lightbox{
-      position:fixed;inset:0;background:rgba(8,16,28,0.97);
-      z-index:2000;display:none;align-items:center;justify-content:center;
-      backdrop-filter:blur(16px) saturate(1.2);touch-action:none;
+    /* Traitement "Gravure" des images */
+    .photo-wrapper {
+      border: 1px solid var(--ink); padding: 5px; background: #fff;
+      margin-bottom: 15px; break-inside: avoid;
     }
-    #lightbox.active{display:flex;}
-    #lb-content{position:relative;display:flex;align-items:center;justify-content:center;max-width:90vw;max-height:90vh;}
-    #lightbox img{
-      max-width:85vw;max-height:84vh;
-      transform:scale(0.92) translateY(12px);opacity:0;
-      transition:transform 0.5s var(--cubic),opacity 0.4s;
-      pointer-events:none;display:block;
-      box-shadow:0 40px 100px rgba(0,0,0,0.6);object-fit:contain;
+    .photo-wrapper img {
+      width: 100%; filter: sepia(0.6) grayscale(1) contrast(1.2);
+      mix-blend-mode: multiply; display: block;
     }
-    #lightbox.loaded img{transform:scale(1) translateY(0);opacity:1;}
-    #lb-frame{
-      position:absolute;inset:-10px;
-      border:1px solid rgba(201,169,110,0.15);
-      pointer-events:none;opacity:0;transition:opacity .5s;
+    .caption {
+      font-size: 0.85rem; font-style: italic; text-align: center;
+      margin-top: 8px; border-top: 1px solid #ddd; padding-top: 5px;
     }
-    #lb-frame::before,#lb-frame::after{
-      content:'';position:absolute;width:16px;height:16px;
-      border-color:var(--gold);border-style:solid;opacity:.5;
-    }
-    #lb-frame::before{top:-1px;left:-1px;border-width:1px 0 0 1px;}
-    #lb-frame::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0;}
-    #lightbox.loaded #lb-frame{opacity:1;}
-    #lb-spinner{
-      position:absolute;top:50%;left:50%;width:36px;height:36px;
-      margin:-18px 0 0 -18px;
-      border:1.5px solid rgba(201,169,110,0.2);border-top-color:var(--gold);
-      border-radius:50%;animation:spin .9s linear infinite;
-    }
-    #lb-spinner.hidden{display:none;}
-    .lb-close{
-      position:absolute;top:1.2rem;right:1.5rem;background:none;
-      border:1px solid rgba(201,169,110,0.3);color:var(--gold);
-      font-size:1rem;line-height:1;width:40px;height:40px;
-      display:flex;align-items:center;justify-content:center;
-      cursor:pointer;transition:background .25s,border-color .25s,transform .25s;
-      z-index:10;font-family:'Cormorant Garamond',serif;
-    }
-    .lb-close:hover{background:rgba(201,169,110,0.12);border-color:var(--gold);transform:rotate(90deg);}
-    #lb-title{
-      position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);
-      font-family:'Cormorant Garamond',serif;font-size:.85rem;letter-spacing:3px;
-      color:rgba(255,255,255,0.45);text-transform:uppercase;white-space:nowrap;
-      opacity:0;transition:opacity .5s .3s;
-    }
-    #lightbox.loaded #lb-title{opacity:1;}
 
-    /* ── FOOTER ── */
-    footer{background:var(--dark);color:rgba(232,237,242,0.35);text-align:center;padding:2.5rem 2rem;font-size:.68rem;letter-spacing:1px;border-top:1px solid rgba(201,169,110,0.1);}
-    footer .accent{color:var(--gold);}
-    .footer-social{display:flex;justify-content:center;gap:2rem;margin-bottom:1.2rem;flex-wrap:wrap;}
-    .footer-social a{color:rgba(232,237,242,0.35);text-decoration:none;font-size:.65rem;letter-spacing:1.5px;transition:color .3s;}
-    .footer-social a:hover{color:var(--gold);}
-    .footer-sep{height:1px;background:linear-gradient(90deg,transparent,rgba(201,169,110,0.15),transparent);margin-bottom:1.5rem;}
+    .location-tag {
+      font-weight: 700; color: var(--teal2); text-transform: uppercase;
+      display: block; margin-bottom: 10px; border-bottom: 1px solid var(--gold);
+    }
 
-    @media(max-width:600px){
-      .img-box{height:320px;}
-      .press-card-body{padding:1.3rem 1.3rem 1.6rem;}
-      .press-title{font-size:1.5rem;}
-      .si{padding:3rem 5%;}
-      .press-grid{gap:2rem;}
+    @media (max-width: 768px) {
+      .columns { column-count: 1; }
+      .gazette-title { font-size: 3rem; }
+      .journal-page { padding: 20px; }
     }
   </style>
 </head>
 <body>
 
-<!-- CURSEUR -->
-<svg id="cursor-arrow" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M2 2L2 20L7.5 14.5L11 21L13.5 20L10 13.5L17 13.5L2 2Z" fill="#c9a96e" stroke="#1a2d4a" stroke-width="1"/>
-</svg>
-<svg id="cursor-hand" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8 12V4a2 2 0 0 1 4 0v8" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M12 12V9a2 2 0 0 1 4 0v3" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M16 12v-1a2 2 0 0 1 4 0v5c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M6 13V7a2 2 0 0 1 2-2" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/>
-  <path fill="#c9a96e" fill-opacity="0.15" d="M8 12V4a2 2 0 0 1 4 0v8h4V9a2 2 0 0 1 4 0v8c0 4-3 7-7 7H9a7 7 0 0 1-7-7v-3a2 2 0 0 1 4 0v3H8V12z"/>
-</svg>
-
-<!-- NAVIGATION -->
-<nav role="navigation" id="main-nav">
-  <a href="index.html" class="logo">
-    <img class="logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AAAAfQCAYAAACaOMR5AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAEAAElEQVR4nOz96ZNl53kn+D1nuzf3zNq3rL1Q+5IFVGFfiI0kuEiipJbarfZ0qzum29MxY3s8Hnvaf4DDMTHvPBET4Y7wOBzhfif3WO2edutGLWo0pEhRhEgAJEhiJwgBIEBsxapc7ln8IvNc3EpkLUBlZS34fBAn7q17zz3nd2/mi8T9nud5IgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAuG2laZoO3s/zvBh8Pkku3j/P0zxN46JH0zSSwf2SJCLLkux6rBcAAAAAuDUkV94FAABuLmmapk3TNBERSZIkdV3XERFFUXTruiyTpWi8ruuqrmNpv4g0TbIkSZKyrMv230vHyyIier1q4ca8IwAAAAAAAAD4DAYr0Actr0QviqxTFFnn49etfAFpknyyah0AAAAA+PzJb/QCAADg00rTNGurzpMkSTqdzlCv15svy7IXETEyMjS+bt26LevXr98+NjY2FRExOzv767m5ufMREe+9997ffvDBB79smqbp9aqFxVr2xYC9rVgHAAAAAD5/1NkAAHBLSdM0TZIkraqqbP9d13WdJEkyPDw8vm/fnpN79uw5cccdd5zZtm3b/qmpqc1DQ0Ojc7Ozv/7oo4/eTdM0e/755//ymWee+bMPP/zwnV/84hc/nZ2dPVfX0XQ6eXdhoZy/0e8RAAAAALgxBOgAANxS2sA8IqLT6QwtLCzMRUSsW7duy8mTJx+9555d33ruueWvHDl69N4LFy4cvfnm4X+8/v7+/mvv3fniDPTQ0RbfbqwpZJh+UqAAAAAAAAAA8AAbXY/7MZBA8AAAAAAElFTkSuQmCC" alt="Logo Quintette Atout Vent">
-    <div class="logo-text">Atout Vent<span>Quintette</span></div>
-  </a>
+<nav>
+  <a href="index.html" class="logo">Quintette Atout Vent</a>
   <ul class="nav-links">
-    <li><a href="index.html#about">L'ensemble</a></li>
-    <li><a href="index.html#membres">Les Musiciens</a></li>
-    <li><a href="index.html#agenda">L'Agenda</a></li>
-    <li><a href="archives.html">Archives</a></li>
-    <li><a href="presse.html" class="active">Presse</a></li>
+    <li><a href="index.html">L'ensemble</a></li>
+    <li><a href="presse.html">Presse</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
-<nav class="nav-drawer" id="nav-drawer" aria-hidden="true">
-  <a href="index.html" class="drawer-link">Accueil</a>
-  <a href="index.html#about" class="drawer-link">L'ensemble</a>
-  <a href="index.html#membres" class="drawer-link">Les Musiciens</a>
-  <a href="index.html#agenda" class="drawer-link">L'Agenda</a>
-  <a href="archives.html" class="drawer-link">Archives</a>
-  <a href="presse.html" class="drawer-link">Presse</a>
-  <div class="nav-drawer-sub">
-    <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer">Instagram</a>
-    <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer">Facebook</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-wave hero-wave-1"></div>
-  <div class="hero-wave hero-wave-2"></div>
-  <div class="hero-wave hero-wave-3"></div>
-  <div class="hero-rule"></div>
-  <canvas id="particles-js"></canvas>
-  <div class="hero-content">
-    <div class="hero-orn">
-      <div class="hero-orn-line"></div>
-      <div class="hero-orn-diamond"></div>
-      <div class="hero-orn-line"></div>
+<main class="journal-page">
+  
+  <header class="gazette-header">
+    <div class="gazette-meta">
+      <span>Édition de Normandie</span>
+      <span>Mercredi 15 Avril 2026</span>
+      <span>N° 2024-001</span>
     </div>
-    <p class="hero-tag">Médias &amp; Publications</p>
-    <h1><strong>Revue</strong><em>de Presse</em></h1>
-    <p class="hero-subtitle">Quintette Atout Vent · Le Havre</p>
-  </div>
-</header>
+    <h1 class="gazette-title">La Chronique Musicale</h1>
+  </header>
 
-<!-- CONTENU -->
-<main class="si">
-  <div class="reveal s-header">
-    <span class="s-tag">Couverture médiatique</span>
-    <h2 class="s-title">Articles &amp; publications</h2>
-    <div class="s-line">
-      <div class="s-line-bar"></div>
-      <div class="s-line-dot"></div>
-      <div class="s-line-bar2"></div>
+  <article class="article">
+    <h2 class="headline">Le quintette Atout vent a soufflé ses notes dans l’église</h2>
+    <div class="columns">
+      <span class="location-tag">Sandouville</span>
+      <div class="photo-wrapper">
+        <img src="CC 2026_04_03 (2)_page-0001.jpg" alt="Concert à Sandouville">
+        <p class="caption">Le quintette, invité par l’association La Hêtraie.</p>
+      </div>
+      L’association culturelle La Hêtraie a proposé un concert de musique classique à l’église de Sandouville. 
+      Le quintette Atout vent, formé en 2024 au Havre, a repris l’ouverture de <i>La Flûte enchantée</i> de Mozart. 
+      Composé de hautbois, flûte, basson, cor et clarinette, l'ensemble a réussi à remplir l'édifice et à ravir les oreilles de son auditoire. 
+      L'objectif était de promouvoir le patrimoine architectural de la région tout en amenant un large public à la musique de chambre.
     </div>
-  </div>
+  </article>
 
-  <div class="press-grid">
-
-    <!-- Carte 1 — Le Havre Infos -->
-    <article class="press-card reveal"
-             data-img="IMG_20260415_0003.jpg"
-             data-title="Le Havre Infos — Avril 2026">
-      <div class="card-num">I</div>
-      <div class="img-box press-bg">
-        <div class="img-spinner"></div>
-        <img class="press-card-img" alt="Article Le Havre Infos">
-        <div class="img-overlay"></div>
-        <div class="img-zoom-hint">
-          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-          </svg>
-        </div>
+  <article class="article">
+    <h2 class="headline">Printemps musical à l'Abbaye de Graville</h2>
+    <div class="columns">
+      <span class="location-tag">Le Havre</span>
+      <div class="photo-wrapper">
+        <img src="IMG_20260415_0003.jpg" alt="Abbaye de Graville">
+        <p class="caption">L'abbaye de Graville accueillera les festivités.</p>
       </div>
-      <div class="press-card-body">
-        <div class="press-meta">
-          <span class="press-source">Le Havre Infos</span>
-          <span class="press-date">Avril 2026</span>
-        </div>
-        <h2 class="press-title">Le quintette enchante Le Havre</h2>
-        <p class="press-desc">Retour sur la saison musicale du Quintette Atout Vent, leurs concerts havrais et l'accueil enthousiaste du public normand.</p>
-        <button class="card-cta">Agrandir l'article
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </button>
-      </div>
-    </article>
+      Le Concert Atout Vent mettra en scène un quintette à vent avec un programme célébrant le printemps. 
+      Les spectateurs pourront écouter des extraits de Peer Gynt, Mozart, Tchaïkovski, Debussy et Fauré. 
+      Rendez-vous est pris le samedi 25 avril à 15 h 30 pour une heure de musique au profit de l'ensemble. 
+      En guise de prélude, une rencontre avec le luthier François Bonnet permettra également de découvrir les métiers d'art.
+    </div>
+  </article>
 
-    <!-- Carte 2 — Courrier Cauchois -->
-    <article class="press-card reveal"
-             data-img="CC 2026_04_03 (2)_page-0001.jpg"
-             data-title="Courrier Cauchois — Mars 2026">
-      <div class="card-num">II</div>
-      <div class="img-box press-bg">
-        <div class="img-spinner"></div>
-        <img class="press-card-img" alt="Article Courrier Cauchois">
-        <div class="img-overlay"></div>
-        <div class="img-zoom-hint">
-          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-          </svg>
-        </div>
-      </div>
-      <div class="press-card-body">
-        <div class="press-meta">
-          <span class="press-source">Courrier Cauchois</span>
-          <span class="press-date">Mars 2026</span>
-        </div>
-        <h2 class="press-title">Sandouville sous le signe de la musique</h2>
-        <p class="press-desc">Compte rendu du concert donné à l'église de Sandouville en partenariat avec l'association La Hêtraie. Un moment inoubliable dans ce cadre historique.</p>
-        <button class="card-cta">Agrandir l'article
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-          </svg>
-        </button>
-      </div>
-    </article>
-
-  </div>
-
-  <div class="btn-wrap reveal">
-    <a href="index.html" class="btn-back"><span>← Retour à l'accueil</span></a>
-  </div>
 </main>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" role="dialog" aria-modal="true" aria-label="Article de presse agrandi">
-  <button class="lb-close" id="lb-close-btn" aria-label="Fermer">✕</button>
-  <div id="lb-content">
-    <div id="lb-spinner"></div>
-    <img id="lightbox-img" src="" alt="">
-    <div id="lb-frame"></div>
-  </div>
-  <div id="lb-title"></div>
+<div style="text-align: center; padding-bottom: 3rem;">
+  <a href="index.html" style="color: var(--gold); text-decoration: none; font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 2px;">
+    ← RETOUR À L'ACCUEIL DU QUINTETTE
+  </a>
 </div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-social">
-    <a href="https://www.instagram.com/atout_vent_quintette" target="_blank" rel="noopener noreferrer">📷 Instagram</a>
-    <a href="https://www.facebook.com/quintette.atout.vent" target="_blank" rel="noopener noreferrer">👤 Facebook</a>
-    <a href="mailto:atoutvent76@gmail.com">✉️ atoutvent76@gmail.com</a>
-  </div>
-  <div class="footer-sep"></div>
-  © 2026 <span class="accent">Quintette Atout Vent</span> · Le Havre, Normandie · <span class="accent">Battaglia Laurent</span>
-</footer>
-
-<!-- SCRIPTS -->
-<script>
-(function(){
-  "use strict";
-
-  /* ── SCROLL NAV ── */
-  const mainNav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => { mainNav.classList.toggle('scrolled', window.scrollY > 60); }, {passive:true});
-
-  /* ── HAMBURGER ── */
-  const hamburger = document.getElementById('hamburger');
-  const drawer    = document.getElementById('nav-drawer');
-  function openDrawer()  { hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
-  function closeDrawer() { hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-  hamburger.addEventListener('click', () => drawer.classList.contains('open') ? closeDrawer() : openDrawer());
-  document.querySelectorAll('.drawer-link').forEach(l => l.addEventListener('click', closeDrawer));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrawer(); closeLightbox(); } });
-
-  /* ── CHARGEMENT IMAGES CARTES ── */
-  document.querySelectorAll('.press-card').forEach(card => {
-    const url    = card.dataset.img;
-    const imgEl  = card.querySelector('.press-card-img');
-    const spinner= card.querySelector('.img-spinner');
-    if (!url || !imgEl) return;
-    imgEl.onload  = () => { imgEl.classList.add('visible'); if (spinner) spinner.classList.add('hidden'); };
-    imgEl.onerror = () => { if (spinner) spinner.classList.add('hidden'); };
-    imgEl.src = url;
-  });
-
-  /* ── REVEAL SCROLL ── */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); io.unobserve(e.target); } });
-  }, {threshold:0.07});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  /* ── LIGHTBOX ── */
-  const lb    = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightbox-img');
-  const lbSpin= document.getElementById('lb-spinner');
-  const lbTit = document.getElementById('lb-title');
-
-  function openLightbox(card) {
-    const url = card.dataset.img;
-    if (!url) return;
-    lbImg.style.opacity = '0';
-    lbSpin.classList.remove('hidden');
-    lb.style.display = 'flex';
-    requestAnimationFrame(() => lb.classList.add('active'));
-    document.body.style.overflow = 'hidden';
-    lbTit.textContent = card.dataset.title || '';
-    lbImg.onload  = () => { lbSpin.classList.add('hidden'); lbImg.style.opacity='1'; lb.classList.add('loaded'); };
-    lbImg.onerror = () => lbSpin.classList.add('hidden');
-    lbImg.src = url;
-  }
-  function closeLightbox() {
-    lb.classList.remove('active','loaded');
-    setTimeout(() => { lb.style.display='none'; lbImg.src=''; }, 450);
-    document.body.style.overflow = '';
-  }
-  window.closeLightbox = closeLightbox;
-
-  document.getElementById('lb-close-btn').addEventListener('click', closeLightbox);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-  document.querySelectorAll('.press-card').forEach(card => card.addEventListener('click', () => openLightbox(card)));
-
-  let tsY = 0;
-  lb.addEventListener('touchstart', e => { tsY = e.touches[0].clientY; }, {passive:true});
-  lb.addEventListener('touchend',   e => { if (e.changedTouches[0].clientY - tsY > 60) closeLightbox(); }, {passive:true});
-
-  /* ── PARTICULES (identiques archives) ── */
-  const canvas = document.getElementById('particles-js');
-  const ctx    = canvas.getContext('2d');
-  let W, H, parts = [], mouse = {x:-9999,y:-9999};
-  const COUNT=80, LINK=120, REP=100, ATT=190;
-
-  class P {
-    constructor(){this.reset(true);}
-    reset(r){
-      this.x=Math.random()*W; this.y=r?Math.random()*H:(Math.random()<.5?-4:H+4);
-      const s=.1+Math.random()*.2, a=Math.random()*Math.PI*2;
-      this.vx=Math.cos(a)*s; this.vy=Math.sin(a)*s;
-      this.r=.8+Math.random()*1.4; this.alpha=.2+Math.random()*.5;
-      this.gold=Math.random()<.18;
-    }
-    update(){
-      const dx=this.x-mouse.x, dy=this.y-mouse.y, d=Math.sqrt(dx*dx+dy*dy);
-      if(d<REP&&d>0){const f=((REP-d)/REP)*.7; this.vx+=(dx/d)*f; this.vy+=(dy/d)*f;}
-      else if(d<ATT&&d>REP){const f=((d-REP)/(ATT-REP))*.04; this.vx-=(dx/d)*f; this.vy-=(dy/d)*f;}
-      this.vx+=(Math.random()-.5)*.004; this.vy+=(Math.random()-.5)*.004;
-      this.vx*=.993; this.vy*=.993; this.x+=this.vx; this.y+=this.vy;
-      if(this.x<-12||this.x>W+12||this.y<-12||this.y>H+12)this.reset(false);
-    }
-    draw(){
-      ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-      ctx.fillStyle=this.gold?`rgba(201,169,110,${this.alpha*.85})`:`rgba(255,255,255,${this.alpha})`;
-      ctx.fill();
-    }
-  }
-
-  function initCanvas(){
-    const hero=document.getElementById('hero');
-    W=canvas.width=hero.offsetWidth; H=canvas.height=hero.offsetHeight;
-    parts=Array.from({length:COUNT},()=>new P());
-  }
-  function drawLinks(){
-    for(let i=0;i<parts.length;i++) for(let j=i+1;j<parts.length;j++){
-      const a=parts[i],b=parts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<LINK){
-        const t=1-d/LINK;
-        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-        ctx.strokeStyle=(a.gold&&b.gold)?`rgba(201,169,110,${t*.3})`:`rgba(255,255,255,${t*.12})`;
-        ctx.lineWidth=t*.8; ctx.stroke();
-      }
-    }
-  }
-  function render(){ctx.clearRect(0,0,W,H); drawLinks(); parts.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(render);}
-
-  const heroEl=document.getElementById('hero');
-  heroEl.addEventListener('mousemove',e=>{const r=canvas.getBoundingClientRect(); mouse.x=e.clientX-r.left; mouse.y=e.clientY-r.top;});
-  heroEl.addEventListener('mouseleave',()=>{mouse.x=-9999;mouse.y=-9999;});
-  let rT; window.addEventListener('resize',()=>{clearTimeout(rT);rT=setTimeout(initCanvas,140);},{passive:true});
-  initCanvas(); render();
-
-})();
-</script>
-
-<!-- CURSEUR DYNAMIQUE -->
-<script>
-(function(){
-  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
-  const arrow = document.getElementById('cursor-arrow');
-  const hand  = document.getElementById('cursor-hand');
-  let rx=0, ry=0, cx=0, cy=0;
-  window.addEventListener('mousemove', e => { rx=e.clientX; ry=e.clientY; });
-  function mv(){
-    cx += (rx-cx)*.18; cy += (ry-cy)*.18;
-    arrow.style.left=cx+'px'; arrow.style.top=cy+'px';
-    hand.style.left=cx+'px';  hand.style.top=cy+'px';
-    requestAnimationFrame(mv);
-  }
-  mv();
-  document.querySelectorAll('a,button,.press-card').forEach(el => {
-    el.addEventListener('mouseenter', () => { arrow.style.display='none'; hand.style.display='block'; });
-    el.addEventListener('mouseleave', () => { arrow.style.display='block'; hand.style.display='none'; });
-  });
-})();
-</script>
 
 </body>
 </html>
