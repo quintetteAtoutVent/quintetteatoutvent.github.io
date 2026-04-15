@@ -3,111 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Gazette Musicale — Quintette Atout Vent</title>
+  <title>La Gazette — Quintette Atout Vent</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     :root{
-      --teal2:#1a2d4a;
-      --gold:#c9a96e;
-      --paper:#e8e4d5;
+      --teal2:#1a2d4a; /* Votre bleu d'origine */
+      --gold:#c9a96e;  /* Votre doré d'origine */
+      --paper:#e8e4d5; /* Teinte papier vieilli */
       --ink:#2b2b2b;
+      --cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
     }
 
     body {
-      background-color: #222;
+      background-color: #1a1a1a;
       color: var(--ink);
       font-family: 'Cormorant Garamond', serif;
-      padding-top: 80px;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV PRÉSERVÉE ── */
+    /* ── NAVIGATION (Identité Quintette) ── */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 5%; background: var(--teal2); border-bottom: 2px solid var(--gold);
     }
-    .logo { text-decoration: none; color: #fff; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+    .logo { 
+      text-decoration: none; color: #fff; font-weight: 700; 
+      text-transform: uppercase; letter-spacing: 2px; 
+      display: flex; align-items: center; gap: 10px;
+    }
     .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a { color: #fff; text-decoration: none; font-family: 'Montserrat'; font-size: 0.7rem; text-transform: uppercase; }
+    .nav-links a { 
+      color: #fff; text-decoration: none; font-family: 'Montserrat'; 
+      font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .nav-links a.active { color: var(--gold); }
 
-    /* ── LA FEUILLE DE JOURNAL ── */
-    .journal-page {
-      max-width: 1000px;
-      margin: 2rem auto;
+    /* ── ZONE DU JOURNAL EN 3D ── */
+    .journal-scene {
+      perspective: 2500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 120px 20px 60px;
+    }
+
+    .journal-book {
+      width: 100%;
+      max-width: 550px;
+      height: 780px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 1.6s var(--cubic);
+      cursor: pointer;
+    }
+
+    /* Décalage pour centrer l'ensemble une fois ouvert */
+    .journal-book.is-open {
+      transform: translateX(25%);
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
       background: var(--paper);
       background-image: url("https://www.transparenttextures.com/patterns/old-paper.png");
       padding: 40px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      box-shadow: inset 0 0 60px rgba(0,0,0,0.1);
+      backface-visibility: hidden;
       border: 1px solid #c0b9a0;
-      position: relative;
     }
 
-    /* En-tête Vintage */
-    .gazette-header {
+    /* COUVERTURE (Volet pivotant) */
+    .page-front {
+      z-index: 2;
+      transform-origin: left;
+      transition: transform 1.6s var(--cubic);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      border-bottom: 5px double var(--ink);
-      margin-bottom: 30px;
-      padding-bottom: 15px;
+      box-shadow: 15px 0 35px rgba(0,0,0,0.4);
+    }
+
+    .journal-book.is-open .page-front {
+      transform: rotateY(-180deg);
+    }
+
+    /* PAGE INTÉRIEURE (Contenu fixe) */
+    .page-inside {
+      z-index: 1;
+      overflow-y: auto;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    }
+
+    /* ── TYPOGRAPHIE GAZETTE ── */
+    .gazette-header {
+      border-bottom: 4px double var(--ink);
+      margin-bottom: 25px; padding-bottom: 12px;
+      width: 100%;
     }
     .gazette-meta {
       display: flex; justify-content: space-between;
-      border-bottom: 1px solid var(--ink);
-      text-transform: uppercase; font-weight: 600; font-size: 0.8rem;
-      padding: 5px 0; margin-bottom: 10px;
+      text-transform: uppercase; font-size: 0.75rem; font-weight: 600;
+      border-bottom: 1px solid var(--ink); padding: 5px 0; margin-bottom: 10px;
     }
-    .gazette-title {
-      font-size: 5rem; font-weight: 700; color: var(--teal2);
-      text-transform: uppercase; letter-spacing: -2px; line-height: 0.8;
+    .cover-title {
+      font-size: 4.2rem; color: var(--teal2); line-height: 0.85;
+      margin: 25px 0; font-weight: 700; text-transform: uppercase;
     }
-
-    /* ── ARTICLES ── */
-    .article {
-      margin-bottom: 40px;
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      padding-bottom: 40px;
-    }
-    .article:last-child { border-bottom: none; }
 
     .headline {
-      font-size: 2.8rem; font-weight: 700; color: var(--teal2);
+      font-size: 2.4rem; font-weight: 700; color: var(--teal2);
       line-height: 1.1; margin-bottom: 20px; text-align: center;
+      border-bottom: 1px solid var(--ink); padding-bottom: 10px;
     }
 
     .columns {
-      column-count: 2; column-gap: 30px; column-rule: 1px solid rgba(0,0,0,0.1);
-      text-align: justify; font-size: 1.2rem; line-height: 1.4;
+      text-align: justify; font-size: 1.2rem; line-height: 1.45;
     }
 
-    /* Lettrine style ancien */
-    .columns::first-letter {
-      float: left; font-size: 4.5rem; line-height: 0.8;
-      padding-right: 12px; font-weight: 700; color: var(--gold);
-    }
-
-    /* Traitement "Gravure" des images */
-    .photo-wrapper {
+    .photo-frame {
       border: 1px solid var(--ink); padding: 5px; background: #fff;
-      margin-bottom: 15px; break-inside: avoid;
+      margin: 15px 0; break-inside: avoid;
     }
-    .photo-wrapper img {
-      width: 100%; filter: sepia(0.6) grayscale(1) contrast(1.2);
+    .photo-frame img {
+      width: 100%; filter: sepia(0.4) grayscale(1) contrast(1.15);
       mix-blend-mode: multiply; display: block;
     }
     .caption {
       font-size: 0.85rem; font-style: italic; text-align: center;
-      margin-top: 8px; border-top: 1px solid #ddd; padding-top: 5px;
+      margin-top: 8px; color: #555;
     }
 
-    .location-tag {
-      font-weight: 700; color: var(--teal2); text-transform: uppercase;
-      display: block; margin-bottom: 10px; border-bottom: 1px solid var(--gold);
+    /* Lettrine Ornée */
+    .drop-cap::first-letter {
+      float: left; font-size: 4rem; line-height: 0.75;
+      padding-right: 10px; font-weight: 700; color: var(--gold);
     }
+
+    .click-prompt {
+      position: absolute; bottom: 50px;
+      font-family: 'Montserrat'; font-size: 0.65rem;
+      letter-spacing: 4px; border: 1px solid var(--ink);
+      padding: 12px 24px; text-transform: uppercase;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Scrollbar pour le contenu intérieur */
+    .page-inside::-webkit-scrollbar { width: 6px; }
+    .page-inside::-webkit-scrollbar-thumb { background: var(--gold); }
 
     @media (max-width: 768px) {
-      .columns { column-count: 1; }
-      .gazette-title { font-size: 3rem; }
-      .journal-page { padding: 20px; }
+      .journal-book { height: 650px; }
+      .journal-book.is-open { transform: translateX(0); }
+      .cover-title { font-size: 2.8rem; }
     }
   </style>
 </head>
@@ -116,58 +171,88 @@
 <nav>
   <a href="index.html" class="logo">Quintette Atout Vent</a>
   <ul class="nav-links">
-    <li><a href="index.html">L'ensemble</a></li>
-    <li><a href="presse.html">Presse</a></li>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="presse.html" class="active">La Gazette</a></li>
   </ul>
 </nav>
 
-<main class="journal-page">
-  
-  <header class="gazette-header">
-    <div class="gazette-meta">
-      <span>Édition de Normandie</span>
-      <span>Mercredi 15 Avril 2026</span>
-      <span>N° 2024-001</span>
-    </div>
-    <h1 class="gazette-title">La Chronique Musicale</h1>
-  </header>
-
-  <article class="article">
-    <h2 class="headline">Le quintette Atout vent soufflé ses notes</h2>
-    <div class="columns">
-      <span class="location-tag">Le courrier Cauchois</span>
-      <div class="photo-wrapper">
-        <img src="CC 2026_04_03 (2)_page-0001.jpg" alt="Concert à Sandouville">
-        <p class="caption">Le quintette, invité par l’association La Hêtraie.</p>
+<div class="journal-scene">
+  <div class="journal-book" id="journal-book">
+    
+    <div class="page page-front">
+      <div class="gazette-header">
+        <div class="gazette-meta">
+          <span>Gazette Régionale</span>
+          <span>Le Havre, 2026</span>
+        </div>
       </div>
-      L’association culturelle La Hêtraie a proposé un concert de musique classique à l’église de Sandouville. 
-      Le quintette Atout vent, formé en 2024 au Havre, a repris l’ouverture de <i>La Flûte enchantée</i> de Mozart. 
-      Composé de hautbois, flûte, basson, cor et clarinette, l'ensemble a réussi à remplir l'édifice et à ravir les oreilles de son auditoire. 
-      L'objectif était de promouvoir le patrimoine architectural de la région tout en amenant un large public à la musique de chambre.
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="headline">Printemps musical à l'Abbaye de Graville</h2>
-    <div class="columns">
-      <span class="location-tag">Le Havre Infos</span>
-      <div class="photo-wrapper">
-        <img src="IMG_20260415_0003.jpg" alt="Abbaye de Graville">
-        <p class="caption">L'abbaye de Graville accueillera les festivités.</p>
+      
+      <h1 class="cover-title">LA CHRONIQUE <br> DES VENTS</h1>
+      <p style="font-style: italic; color: var(--gold); letter-spacing: 1px;">"L'âme des instruments à vent en Normandie"</p>
+      
+      <div class="photo-frame" style="width: 85%; margin: 35px 0;">
+        <img src="IMG_20260415_0003.jpg" alt="Aperçu Gazette">
       </div>
-      Le Concert Atout Vent mettra en scène un quintette à vent avec un programme célébrant le printemps. 
-      Les spectateurs pourront écouter des extraits de Peer Gynt, Mozart, Tchaïkovski, Debussy et Fauré. 
-      Rendez-vous est pris le samedi 25 avril à 15 h 30 pour une heure de musique au profit de l'ensemble. 
+
+      <div class="click-prompt">Feuilleter l'édition</div>
     </div>
-  </article>
 
-</main>
+    <div class="page page-inside">
+      <div class="gazette-header">
+        <div class="gazette-meta">
+          <span>Actualités Musicales</span>
+          <span>Volume IV — N° 76</span>
+        </div>
+      </div>
 
-<div style="text-align: center; padding-bottom: 3rem;">
-  <a href="index.html" style="color: var(--gold); text-decoration: none; font-family: 'Montserrat'; font-size: 0.8rem; letter-spacing: 2px;">
-    ← RETOUR À L'ACCUEIL DU QUINTETTE
-  </a>
+      <h2 class="headline">Le quintette Atout vent a soufflé ses notes dans l’église</h2>
+      <div class="columns drop-cap">
+        <div class="photo-frame">
+          <img src="CC 2026_04_03 (2)_page-0001.jpg" alt="Concert à Sandouville">
+          <p class="caption">Le quintette a ravi les oreilles de son auditoire.</p>
+        </div>
+        L’association culturelle La Hêtraie a proposé un concert de musique classique à l’église de Sandouville. 
+        Le quintette Atout vent, formé en 2024 au Havre et composé de hautbois, flûte, basson, cor et clarinette, a repris l’ouverture de <i>La Flûte enchantée</i> de Mozart. 
+        L'ensemble a réussi à remplir l'église pour promouvoir le patrimoine architectural local.
+      </div>
+
+      <hr style="margin: 35px 0; border: none; border-top: 1px double var(--ink);">
+
+      <h2 class="headline">Mélodies Printanières à l'Abbaye</h2>
+      <div class="columns">
+        <div class="photo-frame">
+          <img src="IMG_20260415_0003.jpg" alt="Abbaye de Graville">
+          <p class="caption">L'abbaye de Graville, écrin de musique et d'histoire.</p>
+        </div>
+        Un programme célébrant le printemps se déroulera à l'Abbaye de Graville. 
+        Les spectateurs pourront écouter des extraits de Peer Gynt, Mozart, Tchaïkovski, Debussy et Fauré. 
+        L'événement mettra également à l'honneur les métiers d'art avec la présence du luthier François Bonnet.
+      </div>
+      
+      <div style="text-align: center; margin-top: 50px; padding-bottom: 20px;">
+        <p style="font-size: 0.8rem; font-style: italic; opacity: 0.6;">Cliquez pour refermer la gazette</p>
+      </div>
+    </div>
+
+  </div>
 </div>
+
+<footer style="text-align: center; padding-bottom: 40px;">
+  <a href="index.html" style="color: var(--gold); text-decoration: none; font-family: 'Montserrat'; font-size: 0.75rem; letter-spacing: 2px;">
+    ← RETOUR À L'ACCUEIL
+  </a>
+</footer>
+
+<script>
+  /* GESTION DE L'OUVERTURE DU JOURNAL */
+  const book = document.getElementById('journal-book');
+  
+  book.addEventListener('click', () => {
+    book.classList.toggle('is-open');
+  });
+
+  /* GESTION DU CURSEUR (Optionnel, si vous gardez votre script global) */
+</script>
 
 </body>
 </html>
