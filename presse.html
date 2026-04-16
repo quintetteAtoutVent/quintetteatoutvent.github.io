@@ -17,10 +17,21 @@
       --tx:     1.1s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
+  /* ── FOND ANIMÉ ── */
     html, body {
       height: 100%;
       overflow: hidden;
-      background: #191919;
+      /* Le dégradé avec vos couleurs sombres et Teal */
+      background: linear-gradient(-45deg, #0f1c2e, #111111, #1a2d4a, #080d14);
+      background-size: 400% 400%;
+      animation: ambientGlow 10s ease infinite; /* Animation lente de 18 secondes */
+    }
+
+    /* Définition du mouvement fluide du fond */
+    @keyframes ambientGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     body {
