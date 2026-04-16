@@ -11,7 +11,6 @@
     :root {
       --teal2: #1a2d4a; 
       --gold: #c9a96e;
-      /* Couleur papier journal authentique */
       --paper: #e4decb; 
       --ink: #111111;   
       --transit: 1.2s cubic-bezier(0.25, 1, 0.5, 1);
@@ -23,7 +22,6 @@
       font-family: 'Cormorant Garamond', serif;
       overflow-x: hidden;
       min-height: 100vh;
-      /* Empêche la sélection de texte accidentelle pendant le glissement */
       user-select: none; 
     }
 
@@ -45,27 +43,24 @@
       align-items: center;
       min-height: 100vh;
       padding: 120px 20px 60px;
-      touch-action: pan-y; /* Permet le scroll vertical mais capture le swipe horizontal */
+      touch-action: pan-y; 
     }
 
     .book {
       position: relative;
-      width: 480px;  /* Largeur d'une page fermée */
-      height: 750px;
+      width: 480px; 
+      height: 850px; /* AGRANDI POUR LE TEXTE */
       transform-style: preserve-3d;
       transition: transform var(--transit);
-      /* Centrage : le livre fermé est décalé pour paraître au milieu */
       transform: rotateX(2deg) translateX(0);
       cursor: grab;
     }
     .book:active { cursor: grabbing; }
 
     .book.is-open {
-      /* Le livre s'ouvre, on le décale pour centrer la double page */
       transform: rotateX(2deg) translateX(240px);
     }
 
-    /* La Feuille (qui contient un Recto et un Verso) */
     .leaf {
       position: absolute;
       top: 0; left: 0;
@@ -75,61 +70,68 @@
       transition: transform var(--transit);
     }
 
-    /* Le calque de face (Recto ou Verso) */
     .face {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       background-color: var(--paper);
-      /* Double Texture : Vieux papier + légères lignes d'impression */
       background-image: 
         url("https://www.transparenttextures.com/patterns/aged-paper.png"),
         repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
-      backface-visibility: hidden; /* C'est ICI la magie pour cacher l'autre côté */
+      backface-visibility: hidden; 
       border: 1px solid rgba(0,0,0,0.15);
       padding: 35px 40px;
       display: flex;
       flex-direction: column;
     }
 
-    /* Configuration des Rectos et Versos */
     .face.front {
       transform: rotateY(0deg);
       background-blend-mode: multiply;
-      /* Pliure interne droite */
       box-shadow: inset 15px 0 20px -10px rgba(0,0,0,0.1);
     }
     .face.back {
       transform: rotateY(180deg);
-      /* Pliure interne gauche */
       box-shadow: inset -15px 0 20px -10px rgba(0,0,0,0.1);
     }
 
-    /* Action de tourner */
     .leaf.turned { transform: rotateY(-180deg); }
 
-    /* Ombrages externes pour le réalisme */
     #leaf1 { z-index: 3; }
     #leaf2 { z-index: 2; }
     #leaf3 { z-index: 1; box-shadow: 10px 10px 30px rgba(0,0,0,0.5); }
     .leaf.turned { box-shadow: -10px 10px 30px rgba(0,0,0,0.3); }
 
     /* ── TYPOGRAPHIE GAZETTE ── */
-    .gazette-header { border-bottom: 4px double var(--ink); margin-bottom: 25px; text-align: center; width: 100%;}
-    .gazette-meta { display: flex; justify-content: space-between; text-transform: uppercase; font-size: 0.65rem; font-weight: 700; border-bottom: 1px solid var(--ink); padding: 5px 0; margin-bottom: 15px; }
+    .gazette-header { border-bottom: 4px double var(--ink); margin-bottom: 20px; text-align: center; width: 100%; flex-shrink: 0;}
+    .gazette-meta { display: flex; justify-content: space-between; text-transform: uppercase; font-size: 0.65rem; font-weight: 700; border-bottom: 1px solid var(--ink); padding: 5px 0; margin-bottom: 10px; }
     
-    .gazette-title { font-size: 3.2rem; color: var(--teal2); font-weight: 700; line-height: 0.9; margin: 20px 0; text-transform: uppercase; }
-    .headline { font-size: 1.6rem; font-weight: 700; color: var(--ink); line-height: 1.1; margin-bottom: 20px; text-align: center; font-style: italic;}
+    .gazette-title { font-size: 3.2rem; color: var(--teal2); font-weight: 700; line-height: 0.9; margin: 15px 0; text-transform: uppercase; }
+    .headline { font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1.1; margin-bottom: 15px; text-align: center; font-style: italic; flex-shrink: 0;}
     
-    .article-text { font-size: 1.1rem; line-height: 1.45; text-align: justify; color: var(--ink); hyphens: auto;}
-    .article-text p { margin-bottom: 15px; }
+    /* SYSTÈME DE SCROLL INTERNE POUR LES LONGS TEXTES */
+    .article-text { 
+      font-size: 0.95rem; /* Ajusté pour laisser respirer */
+      line-height: 1.4; 
+      text-align: justify; 
+      color: var(--ink); 
+      hyphens: auto;
+      overflow-y: auto; /* Permet de scroller le texte */
+      flex-grow: 1;
+      padding-right: 10px; /* Espace pour la barre de scroll */
+    }
+    .article-text p { margin-bottom: 12px; }
 
-    .photo-raw { width: 100%; height: auto; display: block; margin: auto; border: 1px solid rgba(0,0,0,0.2); }
+    /* Scrollbar personnalisée */
+    .article-text::-webkit-scrollbar { width: 4px; }
+    .article-text::-webkit-scrollbar-track { background: transparent; }
+    .article-text::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
 
-    .drop-cap::first-letter { float: left; font-size: 3.5rem; line-height: 0.7; padding-right: 12px; font-weight: 700; color: var(--ink); }
+    .photo-raw { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; margin: auto; border: 1px solid rgba(0,0,0,0.2); }
 
-    /* Indicateur discret */
-    .hint { margin-top: auto; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; }
+    .drop-cap::first-letter { float: left; font-size: 3.5rem; line-height: 0.7; padding-right: 12px; padding-top: 5px; font-weight: 700; color: var(--ink); }
+
+    .hint { margin-top: 15px; text-align: center; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; flex-shrink: 0;}
 
     /* ── RESPONSIVE MOBILE ── */
     @media (max-width: 1050px) {
@@ -138,6 +140,7 @@
       .leaf { position: relative; width: 100%; height: auto; transform: none !important; display: block; }
       .face { position: relative; width: 100%; height: auto; transform: none !important; border: none; border-bottom: 2px solid var(--ink); padding: 30px 15px; box-shadow: none !important; }
       .hint { display: none; }
+      .article-text { overflow-y: visible; padding-right: 0;} /* Pas besoin de scroll sur mobile */
     }
   </style>
 </head>
@@ -174,7 +177,7 @@
           <p style="text-transform: uppercase; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px;">Sandouville</p>
           <p>L'association culturelle La Hêtraie, située à Saint-Romain-de-Colbosc, a proposé dimanche 29 mars, un concert de musique classique à l'église de Sandouville, permettant, par la même occasion, aux auditeurs de découvrir l'intérieur cet édifice religieux.</p>
           <p>Le quintette Atout vent, formé en 2024 au Havre, et composé de hautbois, flûte, basson, cor et clarinette, a repris l'ouverture de La Flûte enchantée de Mozart. L'ensemble musical a réussi à remplir l'église et à ravir les oreilles de son auditoire.</p>
-          <p>L'objectif de ce concert était à la fois d'amener un large public à la musique de chambre et de promouvoir le patrimoine architectural de la région. L'association La Hêtraie propose d'ailleurs régulièrement, des manifestations à Saint-Romain-de-Colbosc et dans les communes environnantes, que ce soit sous forme de conférences à thème, de concerts, de visites guidées et autres sorties patrimoniales.</p>
+          <p>L'objectif de ce concert était à la fois d'amener un large public à la musique de chambre et de promouvoir le patrimoine architectural de la région. L'association La Hêtraie propose d'ailleurs régulièrement, des manifestations à Saint-Romain-de-Colbosc et dans les communes environnantes, que ce soit sous forme de conférences à thème, de concerts, de visites guidées et autres sorties patrimoniales, de biennales de peinture, de sculpture ou toute autre forme d'expression artistique, visant à mettre en lumière les bijoux architecturaux trop souvent ignorés du plus grand nombre.</p>
         </div>
       </div>
     </div>
@@ -192,8 +195,9 @@
         <div class="gazette-header"><div class="gazette-meta"><span>Événements Culturels</span><span>Article 2</span></div></div>
         <h2 class="headline">Concert Atout Vent à l'Abbaye de Graville</h2>
         <div class="article-text drop-cap">
-          <p>Le Concert Atout Vent mettra en scène un quintette à vent avec un programme musical célébrant le printemps. Les spectateurs pourront écouter des extraits de Peer Gynt, Mozart, Tchaïkovski, Debussy et Fauré.</p>
-          <p>Rendez-vous samedi 25 avril à 15 h 30. Durée : 1 heure avec entracte. Entrée gratuite, avec participation libre en fin de concert au profit d'Atout Vent. Réservations conseillées.</p>
+          <p>... à cordes pincées. L'événement se déroulera dimanche 12 avril. En guise de prélude, de 14 h à 18 h, une rencontre avec le luthier François Bonnet permettra de découvrir les métiers d'art. À 15 h, un concert mettra à l'honneur des pièces italiennes et espagnoles, suivi d'un autre concert à 16 h, composé de duos autour de compositeurs anglais des XVIe et XVIIe siècles. L'événement est gratuit, mais il est conseillé de réserver pour les concerts.</p>
+          <p style="text-transform: uppercase; font-weight: bold; font-size: 0.8rem; letter-spacing: 1px; margin-top: 20px;">Concert Atout Vent</p>
+          <p>Le Concert Atout Vent mettra en scène un quintette à vent avec un programme musical célébrant le printemps. Les spectateurs pourront écouter des extraits de Peer Gynt, Mozart, Tchaïkovski, Debussy et Fauré. Rendez-vous samedi 25 avril à 15 h 30. Durée : 1 heure avec entracte. Entrée gratuite, avec participation libre en fin de concert au profit d'Atout Vent. Réservations conseillées.</p>
         </div>
       </div>
     </div>
@@ -217,7 +221,6 @@
   const maxPages = 2; // Index max : 0 (fermé), 1 (double page 1), 2 (double page 2)
   let currentPage = 0;
 
-  // Fonction pour mettre à jour l'affichage selon la page
   function updateBook() {
     if (currentPage === 0) {
       book.classList.remove('is-open');
@@ -234,41 +237,34 @@
     }
   }
 
-  // --- GESTION DU CLIC / TOUCHER ---
   let startX = 0;
   let isDragging = false;
 
-  // Au clic ou au toucher
   document.addEventListener('pointerdown', (e) => {
-    // Ne s'applique que si on clique dans la zone du livre
+    // Si on clique dans la zone de texte pour la faire défiler, on annule le changement de page
+    if(e.target.closest('.article-text')) return;
     if(!e.target.closest('.journal-scene')) return;
     startX = e.clientX;
     isDragging = true;
   });
 
-  // Au relâchement du clic ou du toucher
   document.addEventListener('pointerup', (e) => {
     if (!isDragging) return;
     isDragging = false;
     
     let diff = e.clientX - startX;
 
-    // Détection d'un glissement (Swipe)
+    // Détection Swipe
     if (diff > 50) { 
-      // Glissé vers la droite -> Retourner en arrière
       if(currentPage > 0) currentPage--;
     } else if (diff < -50) {
-      // Glissé vers la gauche -> Avancer
       if(currentPage < maxPages) currentPage++;
     } 
-    // Détection d'un simple Clic
+    // Détection Clic
     else {
-      // Clic à droite de l'écran = Avancer
       if (e.clientX > window.innerWidth / 2) {
         if(currentPage < maxPages) currentPage++;
-      } 
-      // Clic à gauche de l'écran = Reculer
-      else {
+      } else {
         if(currentPage > 0) currentPage--;
       }
     }
