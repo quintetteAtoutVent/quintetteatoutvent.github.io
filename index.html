@@ -81,7 +81,6 @@ nav{
 .hamburger{
   display:none;flex-direction:column;gap:5px;
   background:none;border:none;padding:.6rem;z-index:200;
-  /* Tap target minimum 44×44px */
   min-width:44px;min-height:44px;
   align-items:center;justify-content:center;
 }
@@ -105,7 +104,6 @@ nav{
   font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:600;
   letter-spacing:4px;text-transform:uppercase;transition:color .25s;
   padding:.7rem 2rem;display:block;text-align:center;
-  /* Tap targets */
   min-height:56px;display:flex;align-items:center;justify-content:center;
 }
 .nav-drawer a:hover,.nav-drawer a:active{color:var(--accent);}
@@ -259,7 +257,6 @@ section{padding:6rem 5%;}
 .dot{
   width:6px;height:6px;border-radius:50%;background:rgba(143,168,184,0.25);
   cursor:pointer;transition:all .3s;
-  /* Touch target */
   position:relative;
 }
 .dot::after{content:'';position:absolute;inset:-8px;border-radius:50%;}
@@ -377,13 +374,12 @@ section{padding:6rem 5%;}
 .form-group label{display:block;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem;}
 .form-group input,.form-group textarea,.form-group select{
   width:100%;background:var(--light);border:1px solid rgba(45,79,114,0.2);
-  padding:.85rem 1rem;font-family:'Montserrat',sans-serif;font-size:16px;/* Prevents iOS zoom */
+  padding:.85rem 1rem;font-family:'Montserrat',sans-serif;font-size:16px;
   color:var(--dark);outline:none;transition:border-color .3s;resize:vertical;
   appearance:none;-webkit-appearance:none;border-radius:0;
 }
 .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--teal);}
 .form-group textarea{min-height:110px;}
-/* Select arrow */
 .select-wrapper{position:relative;}
 .select-wrapper::after{
   content:'▾';position:absolute;right:1rem;top:50%;transform:translateY(-50%);
@@ -494,6 +490,7 @@ footer span{color:var(--accent);}
 
 <main data-barba="container" data-barba-namespace="home">
 
+<!-- ═══ HERO ═══ -->
 <section id="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -509,6 +506,7 @@ footer span{color:var(--accent);}
   <div class="scroll-dot"></div>
 </section>
 
+<!-- ═══ ABOUT ═══ -->
 <section id="about">
   <div class="si">
     <div class="about-grid">
@@ -525,6 +523,7 @@ footer span{color:var(--accent);}
   </div>
 </section>
 
+<!-- ═══ MEMBRES ═══ -->
 <section id="membres">
   <div class="si">
     <p class="s-tag">Les musiciens</p>
@@ -599,6 +598,9 @@ footer span{color:var(--accent);}
       </div>
     </div>
   </div>
+</section>
+
+<!-- ═══ AGENDA ═══ -->
 <section id="agenda">
   <div class="si">
     <p class="s-tag">Agenda</p>
@@ -635,11 +637,13 @@ footer span{color:var(--accent);}
   </div>
 </section>
 
+<!-- ═══ ARCHIVE ═══ -->
 <div class="archive-banner">
   <p style="font-size:.8rem;color:var(--gray);margin-bottom:1.5rem;font-weight:300;letter-spacing:1px;">Envie de voir nos précédentes représentations ?</p>
   <a href="archives.html" class="btn" style="color:var(--teal);border-color:var(--teal);">Découvrir nos précédents concerts</a>
 </div>
 
+<!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="si">
     <div class="contact-grid">
@@ -732,7 +736,6 @@ footer span{color:var(--accent);}
     if (!track) return;
     track.style.transform = 'translateX(-' + cur * 100 + '%)';
 
-    // Touch swipe support
     let startX = 0, startY = 0, isDragging = false, moved = false;
     track.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
@@ -754,7 +757,6 @@ footer span{color:var(--accent);}
       isDragging = false;
     }, {passive: true});
 
-    // Auto-advance on mobile
     if (window.matchMedia('(max-width:768px)').matches) {
       let autoTimer = setInterval(() => window.move(1), 4500);
       track.addEventListener('touchstart', () => clearInterval(autoTimer), {passive:true});
